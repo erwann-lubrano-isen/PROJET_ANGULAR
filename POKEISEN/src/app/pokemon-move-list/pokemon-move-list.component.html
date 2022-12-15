@@ -1,0 +1,15 @@
+
+<table>
+	<tbody>
+	<tr>
+		<th>name</th>
+		<th>name</th>
+		<th>name</th>
+		<th>name</th>
+		<th>name</th>
+	</tr>
+	</tbody>
+	<tbody *ngFor="let m of this.moves">
+		<app-pokemon-move-list-row [move]="m.move"></app-pokemon-move-list-row>
+	</tbody>
+</table>

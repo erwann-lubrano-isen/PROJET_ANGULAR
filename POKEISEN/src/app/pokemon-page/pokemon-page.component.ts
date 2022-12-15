@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from '../data.service';
+import { PokemonMoveListComponent } from '../pokemon-move-list/pokemon-move-list.component';
 
 @Component({
   selector: 'app-pokemon-page',
@@ -21,8 +22,8 @@ export class PokemonPageComponent implements OnInit {
             (params) => {
 				this.id = parseInt(params.get('id') ?? "0");
 				this.sub = this.dataService.getSubject().subscribe(
-					() => {
-						this.updateData();
+					(val) => {
+						if(val == this.id)this.updateData();
 					}
 				);
 			}

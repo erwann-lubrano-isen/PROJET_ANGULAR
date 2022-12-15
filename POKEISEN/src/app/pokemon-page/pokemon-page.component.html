@@ -1,7 +1,25 @@
 
 
 <div *ngIf="this.pokemon != null">
-
-	<p> {{this.pokemon.name}} </p>
-
+	<!--name-->
+	<h3> {{this.pokemon.name}} </h3>
+	
+	<!--types-->
+	<h2>Types</h2>
+	<div>
+		<span *ngFor="let t of this.pokemon.types"> {{ t.type.name }} </span>
+	</div>
+	
+	<!--Abilities-->
+	<h2>Abilities</h2>
+	<ul>
+		<li *ngFor="let a of this.pokemon.abilities">
+			{{ a.ability.name }} <span *ngIf="a.is_hidden">hidden ability</span>
+		</li>
+	</ul>
+	
+	<!--stats-->
+	
+	<!---->
+	<app-pokemon-move-list [moves]="this.pokemon.moves"></app-pokemon-move-list>
 </div>
