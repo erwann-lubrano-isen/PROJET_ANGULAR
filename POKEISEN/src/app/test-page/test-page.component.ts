@@ -1,3 +1,4 @@
+import { DataService } from '../data.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TestPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dataService: DataService) {
+    console.log(this.dataService.getPokemon());
+   }
 
   ngOnInit(): void {
   }
