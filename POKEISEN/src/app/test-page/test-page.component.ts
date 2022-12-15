@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class TestPageComponent implements OnInit {
 
   constructor(private dataService: DataService) {
-    console.log(this.dataService.getListPokemon());
+    console.log(this.dataService.getPokemon(''));
    }
 
   ngOnInit(): void {
