@@ -23,6 +23,14 @@ export class DataService {
 		return this.pokemons;
 	}
 	
+	getPokemon(id : number){
+		let p = this.pokemons.filter((p : any) => {
+			return (p.name ===  name);
+		});
+		if(p.length === 0)return null;
+		else return p[0];
+	}
+	
 	updateListPokemon(){
 		let url = 'https://pokeapi.co/api/v2/pokemon';
 		/*this.httpClient.get(url).pipe(map(response => response.data),filter(data => data.status === 'success')
