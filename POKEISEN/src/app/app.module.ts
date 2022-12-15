@@ -11,6 +11,7 @@ import { FooterComponent } from './footer/footer.component';
 import { PokedexPageComponent } from './pokedex-page/pokedex-page.component';
 import { PokemonPageComponent } from './pokemon-page/pokemon-page.component';
 import { AboutPageComponent } from './about-page/about-page.component';
+import { TestPageComponent } from './test-page/test-page.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AboutPageComponent } from './about-page/about-page.component';
     FooterComponent,
     PokedexPageComponent,
     PokemonPageComponent,
-    AboutPageComponent
+    AboutPageComponent,
+    TestPageComponent
   ],
   imports: [
     BrowserModule,
