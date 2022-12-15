@@ -8,14 +8,39 @@ import { DataService } from '../data.service';
   styleUrls: ['./pokemon-page.component.css']
 })
 export class PokemonPageComponent implements OnInit {
+	id : number = 0;
+	pokemon : any = {};
+	
+	sub : any;
 
-  constructor(private route: ActivatedRoute,
-        private router: Router,
-        private dataService: DataService) { 
+	constructor(private route: ActivatedRoute,
+				private router: Router,
+				private dataService: DataService) { 
 		
-		}
+	this.route.paramMap.subscribe(
+            (params) => {
+				this.id = parseInt(params.get('id') ?? "0");
+				this.sub = this.dataService.getSubject().subscribe(
+					() => {
+						this.updateData();
+					}
+				);
+			}
+        );
+		
+	}
 
-  ngOnInit(): void {
-  }
+	ngOnInit(): void {
+		
+	}
+	
+	ngOnDestroy(){
+		this.sub.unsubsribe();
+	}
+	
+	updateData() : void {
+		this.pokemon = this.dataService.getPokemon(this.dataService.getPokemonNameById(this.id));
+		console.log(this.pokemon);
+	}
 
 }

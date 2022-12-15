@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { interval, map, filter, take, range, of, from } from 'rxjs';
+import { Subject , interval, map, filter, take, range, of, from } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,11 +10,17 @@ export class DataService {
 	listPokemon : Array<any> = new Array<any>;
 	pokemons : Array<any> = new Array<any>;
 	
+	subject = new Subject();
+	
 	constructor(httpClient : HttpClient){
 		this.httpClient =httpClient;
 		this.updateListPokemon();
 	}
-
+	
+	getSubject() {
+		return this.subject;
+	}
+	
 	getListPokemon() {
 		return this.listPokemon;
 	}
@@ -23,12 +29,20 @@ export class DataService {
 		return this.pokemons;
 	}
 	
-	getPokemon(id : number){
+	getPokemon(name : string) : any {
 		let p = this.pokemons.filter((p : any) => {
 			return (p.name ===  name);
 		});
-		if(p.length === 0)return null;
+		if(p.length == 0)return null;
 		else return p[0];
+	}
+	
+	getPokemonNameById(id : number) : string {
+		for(let p of this.pokemons){
+			if(p.id === id)
+				return p.name;
+		}
+		return "";
 	}
 	
 	updateListPokemon(){
@@ -37,10 +51,10 @@ export class DataService {
 		);*/
 		this.httpClient.get(url).subscribe(
 			(pokemons : any) => {
-				this.listPokemon = pokemons;
+				this.listPokemon = pokemons.results;
 				for(let p of pokemons.results)
 					this.updatePokemon(p.url, p.name);
-				console.log(this.listPokemon);
+				//console.log(this.listPokemon);
 			}
 		)
 	}
@@ -55,7 +69,8 @@ export class DataService {
 		this.httpClient.get(url).subscribe(
 			(pokemon : any) => {
 				this.pokemons.push(pokemon);
-				console.log(this.pokemons);
+				this.subject.next(pokemon.id);
+				//console.log(this.pokemons);
 			}
 		)
 	}
