@@ -10,7 +10,7 @@ import { PokemonStatsComponent } from '../pokemon-stats/pokemon-stats.component'
 })
 export class PokemonPageComponent implements OnInit {
 	id : number = 0;
-	pokemon : any = {};
+	pokemon : any = null;
 	
 	sub : any;
 
