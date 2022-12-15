@@ -14,6 +14,7 @@ import { AboutPageComponent } from './about-page/about-page.component';
 import { TestPageComponent } from './test-page/test-page.component';
 import { PokemonMoveListComponent } from './pokemon-move-list/pokemon-move-list.component';
 import { PokemonMoveListRowComponent } from './pokemon-move-list-row/pokemon-move-list-row.component';
+import { PokemonStatsComponent } from './pokemon-stats/pokemon-stats.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { PokemonMoveListRowComponent } from './pokemon-move-list-row/pokemon-mov
     AboutPageComponent,
     TestPageComponent,
     PokemonMoveListComponent,
-    PokemonMoveListRowComponent
+    PokemonMoveListRowComponent,
+    PokemonStatsComponent
   ],
   imports: [
     BrowserModule,
