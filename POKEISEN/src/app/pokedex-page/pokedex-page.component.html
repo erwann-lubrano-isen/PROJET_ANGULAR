@@ -1,1 +1,4 @@
-<p>pokedex-page works!</p>
+<div *ngFor="let p of this.pokemons">
+  <a [routerLink]="['/pokedex',p.id]">{{p.name}}</a>
+
+</div>
