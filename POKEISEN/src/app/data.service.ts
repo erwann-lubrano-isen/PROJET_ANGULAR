@@ -14,7 +14,7 @@ export class DataService {
 	
 	constructor(httpClient : HttpClient){
 		this.httpClient =httpClient;
-		this.updateListPokemon();
+		this.updateListPokemon(0,20);
 	}
 	
 	getSubject() {
@@ -45,8 +45,8 @@ export class DataService {
 		return "";
 	}
 	
-	updateListPokemon(){
-		let url = 'https://pokeapi.co/api/v2/pokemon';
+	updateListPokemon(offset : number, limit : number){
+		let url = 'https://pokeapi.co/api/v2/pokemon?offset='+offset+"&limit="+limit;
 		/*this.httpClient.get(url).pipe(map(response => response.data),filter(data => data.status === 'success')
 		);*/
 		this.httpClient.get(url).subscribe(
@@ -73,5 +73,23 @@ export class DataService {
 				//console.log(this.pokemons);
 			}
 		)
+	}
+	
+	loadListPokemon(offset : number, limit : number){
+		
+		if(this.pokemons.filter(
+			(pokemon) => {
+				return offset <= pokemon.id && offset + limit > pokemon.id;
+			}
+		).length >= limit){
+			this.subject.next(offset);
+		}else{
+			this.updateListPokemon(offset, limit);
+		}
+		
+	}
+	
+	getPokemonIdByUrl(url : string) : number{
+		return parseInt(url.substring("https://pokeapi.co/api/v2/pokemon/".length,url.length-1));
 	}
 }

@@ -20,6 +20,7 @@ export class PokedexPageComponent implements OnInit {
    }
 
   ngOnInit(): void {
+	  this.dataService.loadListPokemon(0, 20);
   }
 
 

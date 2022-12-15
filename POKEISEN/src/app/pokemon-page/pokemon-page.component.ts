@@ -21,11 +21,13 @@ export class PokemonPageComponent implements OnInit {
 	this.route.paramMap.subscribe(
             (params) => {
 				this.id = parseInt(params.get('id') ?? "0");
+				
 				this.sub = this.dataService.getSubject().subscribe(
 					(val) => {
 						if(val == this.id)this.updateData();
 					}
 				);
+				this.dataService.loadListPokemon(this.id, 1);
 			}
         );
 		
@@ -36,7 +38,7 @@ export class PokemonPageComponent implements OnInit {
 	}
 	
 	ngOnDestroy(){
-		this.sub.unsubsribe();
+		this.sub.unsubscribe();
 	}
 	
 	updateData() : void {

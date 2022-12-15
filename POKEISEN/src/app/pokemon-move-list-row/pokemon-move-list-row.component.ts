@@ -26,6 +26,11 @@ export class PokemonMoveListRowComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.dataService.loadMove(this.move.url);
+	
+	}
+	
+	ngOnDestroy(){
+		this.sub.unsubscribe();
 	}
 
 }
