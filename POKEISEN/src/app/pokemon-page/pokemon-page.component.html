@@ -8,7 +8,8 @@
 	<!--types-->
 	<h2>Types</h2>
 	<div>
-		<span *ngFor="let t of this.pokemon.types"> {{ t.type.name }} </span>
+		<!--<span *ngFor="let t of this.pokemon.types"> {{ t.type.name }} </span>-->
+		<app-type [types]="this.pokemon.types"></app-type>
 	</div>
 
 	<!--Abilities-->
