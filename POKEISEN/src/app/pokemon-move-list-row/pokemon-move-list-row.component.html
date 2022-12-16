@@ -1,12 +1,12 @@
-	<div *ngIf="this.moveDetail && this.moveDetail.name" class="table-move-cell"> {{this.move.name}} </div>
-	<div *ngIf="!(this.moveDetail && this.moveDetail.name)" class="table-move-cell"> - </div>
-	<div *ngIf="this.moveDetail && this.moveDetail.power" class="table-move-cell"> {{this.moveDetail.power}} </div>
-	<div *ngIf="!(this.moveDetail && this.moveDetail.power)" class="table-move-cell"> - </div>
-	<div *ngIf="this.moveDetail && this.moveDetail.accuracy" class="table-move-cell"> {{this.moveDetail.accuracy}} </div>
-	<div *ngIf="!(this.moveDetail && this.moveDetail.accuracy)" class="table-move-cell"> - </div>
-	<div *ngIf="this.moveDetail && this.moveDetail.pp" class="table-move-cell"> {{this.moveDetail.pp}} </div>
-	<div *ngIf="!(this.moveDetail && this.moveDetail.pp)" class="table-move-cell"> - </div>
-	<div *ngIf="this.moveDetail && this.moveDetail.type" class="table-move-cell"> {{this.moveDetail.type.name}} </div>
-	<div *ngIf="!(this.moveDetail && this.moveDetail.type)" class="table-move-cell"> - </div>
-	<div *ngIf="this.moveDetail && this.moveDetail.damage_class" class="table-move-cell"> {{this.moveDetail.damage_class.name}} </div>
-	<div *ngIf="!(this.moveDetail && this.moveDetail.damage_class)" class="table-move-cell"> - </div>
+<div *ngIf="this.moveDetail && this.moveDetail.name" class="table-move-cell"> {{this.move.name}} </div>
+<div *ngIf="!(this.moveDetail && this.moveDetail.name)" class="table-move-cell"> - </div>
+<div *ngIf="this.moveDetail && this.moveDetail.power" class="table-move-cell"> {{this.moveDetail.power}} </div>
+<div *ngIf="!(this.moveDetail && this.moveDetail.power)" class="table-move-cell"> - </div>
+<div *ngIf="this.moveDetail && this.moveDetail.accuracy" class="table-move-cell"> {{this.moveDetail.accuracy}} </div>
+<div *ngIf="!(this.moveDetail && this.moveDetail.accuracy)" class="table-move-cell"> - </div>
+<div *ngIf="this.moveDetail && this.moveDetail.pp" class="table-move-cell"> {{this.moveDetail.pp}} </div>
+<div *ngIf="!(this.moveDetail && this.moveDetail.pp)" class="table-move-cell"> - </div>
+<div *ngIf="this.moveDetail && this.moveDetail.type" class="table-move-cell"> <app-type [types]="[{type : this.moveDetail.type }]"></app-type> </div>
+<div *ngIf="!(this.moveDetail && this.moveDetail.type)" class="table-move-cell"> - </div>
+<div *ngIf="this.moveDetail && this.moveDetail.damage_class" class="table-move-cell"> {{this.moveDetail.damage_class.name}} </div>
+<div *ngIf="!(this.moveDetail && this.moveDetail.damage_class)" class="table-move-cell"> - </div>
