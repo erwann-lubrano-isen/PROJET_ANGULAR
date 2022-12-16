@@ -1,8 +1,14 @@
 <tr *ngIf="this.moveDetail != null">
-	<td>{{this.move.name}}</td>
-	<td>{{this.moveDetail.power}}</td>
-	<td>{{this.moveDetail.accuracy}}</td>
-	<td *ngIf="this.moveDetail.hasOwnProperty('pp')">{{this.moveDetail.pp}}</td>
-	<td *ngIf="this.moveDetail.hasOwnProperty('type')">{{this.moveDetail.type.name}}</td>
-	<td *ngIf="this.moveDetail.hasOwnProperty('damage_class')">{{this.moveDetail.damage_class.name}}</td>
+	<td *ngIf="this.moveDetail.name">{{this.move.name}}</td>
+	<td *ngIf="!this.moveDetail.name"> - </td>
+	<td *ngIf="this.moveDetail.power">{{this.moveDetail.power}}</td>
+	<td *ngIf="!this.moveDetail.power"> - </td>
+	<td *ngIf="this.moveDetail.accuracy">{{this.moveDetail.accuracy}}</td>
+	<td *ngIf="!this.moveDetail.accuracy"> - </td>
+	<td *ngIf="this.moveDetail.pp">{{this.moveDetail.pp}}</td>
+	<td *ngIf="!this.moveDetail.pp"> - </td>
+	<td *ngIf="this.moveDetail.type">{{this.moveDetail.type.name}}</td>
+	<td *ngIf="!this.moveDetail.type"> - </td>
+	<td *ngIf="this.moveDetail.damage_class">{{this.moveDetail.damage_class.name}}</td>
+	<td *ngIf="!this.moveDetail.damage_class"> - </td>
 </tr>
