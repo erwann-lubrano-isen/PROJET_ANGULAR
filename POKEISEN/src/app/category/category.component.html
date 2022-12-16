@@ -1,6 +1,5 @@
-
-
-<div class="category_group" *ngFor="let c of this.category_types">
-<img src = {{c.url_file}} *ngIf="c.name == this.categories.name"/>
+<div class="category">
+<img src = "https://www.smogon.com/dex/media/images/physical.svg" *ngIf="category== 'physical'"/>
+<img src = "https://www.smogon.com/dex/media/images/special.svg" *ngIf="category== 'special'"/>
+<img src = "https://www.smogon.com/dex/media/images/non-damaging.svg" *ngIf="category== 'status'"/>
 </div>
-
