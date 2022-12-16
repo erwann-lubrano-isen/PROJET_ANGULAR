@@ -1,12 +1,12 @@
 
 <div class="table-moves">
 	<div class="table-move-row">
-		<div class="table-move-cell"> name </div>
-		<div class="table-move-cell"> power </div>
-		<div class="table-move-cell"> accuracy </div>
-		<div class="table-move-cell"> pp </div>
-		<div class="table-move-cell"> type </div>
-    <div class="table-move-cell"> category </div>
+		<div class="table-move-cell"> Name </div>
+		<div class="table-move-cell"> Power </div>
+		<div class="table-move-cell"> Accuracy </div>
+		<div class="table-move-cell"> PP </div>
+		<div class="table-move-cell"> Type </div>
+    <div class="table-move-cell"> Category </div>
 </div>
 	<app-pokemon-move-list-row *ngFor="let m of this.moves" [move]="m.move" class="table-move-row"></app-pokemon-move-list-row>
 </div>

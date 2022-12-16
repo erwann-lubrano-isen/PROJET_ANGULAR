@@ -10,6 +10,9 @@
 
 .table-move-cell{
   display: table-cell;
-  padding-right: 10px;
+  padding-right: 20px;
   width: auto;
+  font-size: 15pt;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  background-color: bisque;
 }
