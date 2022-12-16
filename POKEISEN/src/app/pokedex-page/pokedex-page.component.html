@@ -4,7 +4,9 @@
 	    <img [src]="p.sprites.front_default" style="vertical-align:middle"/>
 	    <a [routerLink]="['/pokedex',p.id]">{{p.name}}</a>
     </div>
-    <div class="pokedex-cell" *ngFor="let t of p.types"> {{ t.type.name }}</div>
+    <div class="pokedex-cell" >
+		<app-type [types]="p.types"></app-type>
+	</div>
 	  <div class="pokedex-cell" div *ngFor="let a of p.abilities">
 			<span *ngIf="!a.is_hidden">{{ a.ability.name }}</span>
 	  </div>
