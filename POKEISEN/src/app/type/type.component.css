@@ -1,0 +1,25 @@
+.type_colored{
+	width : 95%;
+	height : 95%;
+	padding : auto;
+	font-size : 13pt;
+	color : white;
+	font-weight : 400;
+	border-radius : 5px;
+	text-align : center;
+}
+
+.type_for{
+	
+	width : 50%;
+	font-size : 13pt;
+	color : white;
+	font-weight : 400;
+	border-radius : 5px;
+}
+
+.type_group{
+	display : flex; 
+	height : 26px;
+	width : 120px;
+}

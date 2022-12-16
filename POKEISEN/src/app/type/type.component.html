@@ -1,5 +1,7 @@
-<span *ngFor="let t of this.formated_types">
-	<span [style.background-color]="t.color">
-		{{ t.name }}
-	</span>
-</span>
+<div class="type_group"> 
+	<div class="type_for" *ngFor="let t of this.formated_types">
+		<div  class="type_colored" [style.background-color]="t.color">
+			{{ t.name }}
+		</div>
+	</div>
+</div>
