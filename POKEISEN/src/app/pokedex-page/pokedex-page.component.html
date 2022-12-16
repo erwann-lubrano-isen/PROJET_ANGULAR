@@ -1,4 +1,5 @@
 <div *ngFor="let p of this.pokemons">
+	<img [src]="p.sprites.front_default"/>
   <a [routerLink]="['/pokedex',p.id]">{{p.name}}</a>
 
 </div>
