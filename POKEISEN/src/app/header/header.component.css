@@ -1,0 +1,25 @@
+.header{
+  width: auto;
+  height: auto;
+  padding: 0 10%;
+  background: #FF5733;
+}
+.list{
+  width: auto;
+  display: flex;
+  align-items: left;
+  /*justify-content: space-between;*/
+  padding: 20px 0;
+}
+
+.list>li{
+  margin-right: 5%;
+  width: auto;
+  font-size: 16pt;
+}
+
+.list>li>a{
+   color: #1a9ece;
+}
+
+
