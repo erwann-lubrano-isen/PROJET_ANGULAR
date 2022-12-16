@@ -24,14 +24,14 @@ html {
 }
 
 .about-section {
-  padding: 50px;
+  padding: auto;
   text-align: center;
   background-color: #474e5d;
   color: white;
 }
 
 .container {
-  padding: 0 16px;
+  padding: auto;
 }
 
 .container::after, .row::after {
@@ -42,22 +42,6 @@ html {
 
 .title {
   color: grey;
-}
-
-.button {
-  border: none;
-  outline: 0;
-  display: inline-block;
-  padding: 8px;
-  color: white;
-  background-color: #000;
-  text-align: center;
-  cursor: pointer;
-  width: 100%;
-}
-
-.button:hover {
-  background-color: #555;
 }
 
 @media screen and (max-width: 650px) {
