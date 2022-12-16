@@ -27,6 +27,7 @@ export class PokemonPageComponent implements OnInit {
 						if(val == this.id)this.updateData();
 					}
 				);
+				
 				this.dataService.loadListPokemon(this.id-1, 1);
 			}
         );

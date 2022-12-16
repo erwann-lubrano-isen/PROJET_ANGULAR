@@ -1,6 +1,20 @@
 <div *ngFor="let p of this.pokemons">
 	<img [src]="p.sprites.front_default"/>
-  <a [routerLink]="['/pokedex',p.id]">{{p.name}}</a>
+	<a [routerLink]="['/pokedex',p.id]">{{p.name}}</a>
+	<div>
+		<span *ngFor="let t of p.types"> {{ t.type.name }} </span>
+	</div>
+	<div>
+		<div *ngFor="let a of p.abilities">
+			<span *ngIf="!a.is_hidden">{{ a.ability.name }}</span>
+		</div>
+	</div>
+	<div>
+		<div *ngFor="let a of p.abilities">
+			<span *ngIf="a.is_hidden">{{ a.ability.name }}</span>
+		</div>
+	</div>
+	
 
 </div>
 <!--

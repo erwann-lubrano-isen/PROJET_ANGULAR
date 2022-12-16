@@ -14,6 +14,10 @@ export class PokemonMoveListRowComponent implements OnInit {
 	moveDetail : any = null;
 	
 	constructor(private dataService : MovesDataService) {
+		
+	}
+
+	ngOnInit(): void {
 		this.sub = this.dataService.getSubject().subscribe(
 			(val) => {
 				let id = this.dataService.getMoveIdByUrl(this.move.url);
@@ -22,9 +26,6 @@ export class PokemonMoveListRowComponent implements OnInit {
 				}
 			}
 		);
-	}
-
-	ngOnInit(): void {
 		this.dataService.loadMove(this.move.url);
 	
 	}

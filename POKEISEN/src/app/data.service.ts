@@ -22,7 +22,11 @@ export class DataService {
 	}
 	
 	getListPokemon() {
-		return this.listPokemon;
+		return this.listPokemon.sort(
+			(a : any , b : any)  =>  {
+				return a.id - b.id;
+			}
+		);
 	}
 	
 	getPokemons() {
@@ -70,7 +74,7 @@ export class DataService {
 			(pokemon : any) => {
 				this.pokemons.push(pokemon);
 				this.subject.next(pokemon.id);
-				//console.log(this.pokemons);
+				console.log(pokemon);
 			}
 		)
 	}
@@ -82,7 +86,7 @@ export class DataService {
 				return offset <= pokemon.id && offset + limit > pokemon.id;
 			}
 		).length >= limit){
-			this.subject.next(offset);
+			this.subject.next(offset+1);
 		}else{
 			this.updateListPokemon(offset, limit);
 		}
