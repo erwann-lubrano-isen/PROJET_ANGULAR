@@ -1,60 +1,67 @@
-<p>test-page works!</p>
-<p>bonjour</p>
 
-<!DOCTYPE html>
-<html>
-<head>
-<style>
-</style>
-</head>
-<body>
-<!-- structure de base de la page -->
-<h1>Statistiques de Pokémon</h1>
-<div *ngIf="this.stats != null" class="stats-container">
+
+<div *ngIf="this.stats != null" class="stats-container table-stats">
+
+	<div class="table-row">
+		<div class="table-cell label-stat">
+			hp : {{ this.formated_stats.hp.value }}
+		</div>
+		<div class="stat-bar table-cell">
+			<div class="stat-bar-fill" [style.width]="this.formated_stats.hp.width +'%'" [style.background-color]="this.formated_stats.hp.color">hp</div>
+			<!--<div class="stat-bar-label"></div>-->
+		</div>
+	</div>
+	
+	<div class="table-row">
+		<div class="table-cell label-stat">
+			att : {{ this.formated_stats.att.value }}
+		</div>
+		<div class="stat-bar table-cell">
+			<div class="stat-bar-fill" [style.width]="this.formated_stats.att.width +'%'" [style.background-color]="this.formated_stats.att.color">Attack</div>
+			<div class="stat-bar-label"></div>
+		</div>
+	</div>
+	
+	<div class="table-row">
+		<div class="table-cell label-stat">
+			def : {{ this.formated_stats.def.value }}
+		</div>
+		<div class="stat-bar table-cell">
+			<div class="stat-bar-fill" [style.width]="this.formated_stats.def.width +'%'" [style.background-color]="this.formated_stats.def.color">Défense</div>
+			<div class="stat-bar-label"></div>
+		</div>
+	</div>
+
+	<div class="table-row">
+		<div class="table-cell label-stat">
+			spA : {{ this.formated_stats.spA.value }}
+		</div>
+		<div class="stat-bar table-cell">
+			<div class="stat-bar-fill" [style.width]="this.formated_stats.spA.width +'%'" [style.background-color]="this.formated_stats.spA.color">Sp. Atk</div>
+			<div class="stat-bar-label"></div>
+		</div>
+	</div>
+
+	<div class="table-row">
+		<div class="table-cell label-stat">
+			spD : {{ this.formated_stats.spD.value }}
+		</div>
+		<div class="stat-bar table-cell">
+			<div class="stat-bar-fill" [style.width]="this.formated_stats.spD.width +'%'" [style.background-color]="this.formated_stats.spD.color">Sp. Def</div>
+			<div class="stat-bar-label"></div>
+		</div>
+	</div>
+
+	<div class="table-row">
+		<div class="table-cell label-stat">
+			spe : {{ this.formated_stats.spe.value }}
+		</div>
+		<div class="stat-bar table-cell">
+			<div class="stat-bar-fill" [style.width]="this.formated_stats.spe.width +'%'" [style.background-color]="this.formated_stats.spe.color">Speed</div>
+			<div class="stat-bar-label"></div>
+		</div>
+	</div>
 
  
-
-    <!-- barre de statistique pour la force -->
-<div class="stat-bar">
-<div class="stat-bar-fill" [style]="'width: calc('+ this.stats[0].base_stat +'/255*100%);background-color: hsl(0, 100%, 50%);'">HP</div>
-<div class="stat-bar-label"></div>
 </div>
-
- 
-
-    <!-- barre de statistique pour la défense -->
-    <div class="stat-bar">
-        <!-- remplissage de la barre avec une couleur rouge si la valeur de la stat est inférieure à la moitié de la valeur maximale, sinon une couleur verte -->
-        <div class="stat-bar-fill" [style]="'width: calc('+ this.stats[1].base_stat +'/255*100%);background-color: hsl(0, 100%, 50%);'">Attack</div>
-        <div class="stat-bar-label"></div>
-      </div>
-
- 
-
-    <!-- etc. pour les autres statistiques -->
-<div class="stat-bar">
-<div class="stat-bar-fill" [style]="'width: calc('+ this.stats[2].base_stat +'/255*100%);background-color: hsl(0, 100%, 50%);'">Défense</div>
-<div class="stat-bar-label"></div>
-</div>
-
-<div class="stat-bar">
-<div class="stat-bar-fill" [style]="'width: calc('+ this.stats[3].base_stat +'/255*100%);background-color: hsl(0, 100%, 50%);'">Sp. Atk</div>
-<div class="stat-bar-label"></div>
-</div>
-
-<div class="stat-bar">
-<div class="stat-bar-fill" [style]="'width: calc('+ this.stats[4].base_stat +'/255*100%);background-color: hsl(0, 100%, 50%);'">Sp. Def</div>
-<div class="stat-bar-label"></div>
-</div>
-
-<div class="stat-bar">
-<div class="stat-bar-fill" [style]="'width: calc('+ this.stats[5].base_stat +'/255*100%);background-color: hsl(0, 100%, 50%);'">Speed</div>
-<div class="stat-bar-label"></div>
-</div>
-
- 
-
-  </div>
-</body>
-</html>
   

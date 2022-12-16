@@ -1,0 +1,40 @@
+.stats-container{
+	
+	border : solid black 1px;
+	width : 50%;
+}
+
+.table-stats{
+	display : table;
+}
+
+.table-row{
+	display : table-row;
+}
+
+.table-cell{
+	display : table-cell;
+}
+
+.label-stat{
+	width : 15%;
+	margin-right : 0px;
+	margin-left : 0px;
+}
+
+.stat-bar{
+	margin-left : 0px;
+	width : auto;
+	color : rgba(0,0,0,0);
+	
+}
+
+.stat-bar-label{
+	width : 0px;
+}
+
+.stat-bar-fill{
+	margin-top : 4px;
+	margin-bottom : 4px;
+	border-radius : 8px 8px 8px 8px;
+}
