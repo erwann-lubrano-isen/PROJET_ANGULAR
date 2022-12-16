@@ -22,15 +22,15 @@ export class DataService {
 	}
 	
 	getListPokemon() {
-		return this.listPokemon.sort(
+		return this.listPokemon;
+	}
+	
+	getPokemons() {
+		return this.pokemons.sort(
 			(a : any , b : any)  =>  {
 				return a.id - b.id;
 			}
 		);
-	}
-	
-	getPokemons() {
-		return this.pokemons;
 	}
 	
 	getPokemon(name : string) : any {
