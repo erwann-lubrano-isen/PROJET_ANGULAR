@@ -1,6 +1,6 @@
 
 
-<div class="category_group" *ngFor="let c of this.formated_categories">
-<img src = {{c.url_file}} *ngIf="this.categories.name == c.name"/>
+<div class="category_group" *ngFor="let c of this.category_types">
+<img src = {{c.url_file}} *ngIf="c.name == this.categories.name"/>
 </div>
 
