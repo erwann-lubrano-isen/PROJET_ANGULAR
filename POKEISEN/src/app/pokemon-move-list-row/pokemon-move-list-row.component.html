@@ -1,14 +1,13 @@
-<tr *ngIf="this.moveDetail != null">
-	<td *ngIf="this.moveDetail.name">{{this.move.name}}</td>
-	<td *ngIf="!this.moveDetail.name"> - </td>
-	<td *ngIf="this.moveDetail.power">{{this.moveDetail.power}}</td>
-	<td *ngIf="!this.moveDetail.power"> - </td>
-	<td *ngIf="this.moveDetail.accuracy">{{this.moveDetail.accuracy}}</td>
-	<td *ngIf="!this.moveDetail.accuracy"> - </td>
-	<td *ngIf="this.moveDetail.pp">{{this.moveDetail.pp}}</td>
-	<td *ngIf="!this.moveDetail.pp"> - </td>
-	<td *ngIf="this.moveDetail.type">{{this.moveDetail.type.name}}</td>
-	<td *ngIf="!this.moveDetail.type"> - </td>
-	<td *ngIf="this.moveDetail.damage_class">{{this.moveDetail.damage_class.name}}</td>
-	<td *ngIf="!this.moveDetail.damage_class"> - </td>
-</tr>
+
+	<div *ngIf="this.moveDetail.name" class="table-move-cell"> {{this.move.name}} </div>
+	<div *ngIf="!this.moveDetail.name" class="table-move-cell"> - </div>
+	<div *ngIf="this.moveDetail.power" class="table-move-cell"> {{this.moveDetail.power}} </div>
+	<div *ngIf="!this.moveDetail.power" class="table-move-cell"> - </div>
+	<div *ngIf="this.moveDetail.accuracy" class="table-move-cell"> {{this.moveDetail.accuracy}} </div>
+	<div *ngIf="!this.moveDetail.accuracy" class="table-move-cell"> - </div>
+	<div *ngIf="this.moveDetail.pp" class="table-move-cell"> {{this.moveDetail.pp}} </div>
+	<div *ngIf="!this.moveDetail.pp" class="table-move-cell"> - </div>
+	<div *ngIf="this.moveDetail.type" class="table-move-cell"> {{this.moveDetail.type.name}} </div>
+	<div *ngIf="!this.moveDetail.type" class="table-move-cell"> - </div>
+	<div *ngIf="this.moveDetail.damage_class" class="table-move-cell"> {{this.moveDetail.damage_class.name}} </div>
+	<div *ngIf="!this.moveDetail.damage_class" class="table-move-cell"> - </div>

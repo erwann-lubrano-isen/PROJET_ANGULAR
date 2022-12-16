@@ -1,0 +1,19 @@
+.table-moves{
+  display: table;
+  width: auto;
+
+}
+
+.table-move-row{
+  display: table-row;
+  width: auto;
+  margin: auto;
+  padding: auto;
+}
+
+.table-move-cell{
+  display: table-cell;
+  margin-right: 10px;
+  padding: auto;
+  width: auto;
+}
