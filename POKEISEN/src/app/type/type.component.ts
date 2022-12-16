@@ -7,14 +7,14 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class TypeComponent implements OnInit {
 	@Input() types : any;
-	
+
 	colors_type = [
 		{
 			name : "grass",
 			color : "rgb(120, 200, 80)"
 		},
 		{
-			name : "bug", 
+			name : "bug",
 			color : "rgb(168, 184, 32)"
 		},
 		{
@@ -26,7 +26,7 @@ export class TypeComponent implements OnInit {
 			color : "rgb(112, 56, 248)"
 		},
 		{
-			name : "electric", 
+			name : "electric",
 			color : "rgb(248, 208, 48)"
 		},
 		{
@@ -46,7 +46,7 @@ export class TypeComponent implements OnInit {
 			color : "rgb(168, 144, 240)"
 		},
 		{
-			name : "ghost", 
+			name : "ghost",
 			color : "rgb(112, 88, 152)"
 		},
 		{
@@ -82,13 +82,13 @@ export class TypeComponent implements OnInit {
 			color : "rgb(104, 144, 240)"
 		}
 	];
-	
+
 	formated_types = new Array<any>();
-	
-	
-	
+
+
+
   constructor() {
-	  
+
   }
 
   ngOnInit(): void {
