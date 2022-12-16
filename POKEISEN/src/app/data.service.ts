@@ -14,7 +14,7 @@ export class DataService {
 	
 	constructor(httpClient : HttpClient){
 		this.httpClient =httpClient;
-		this.updateListPokemon(0,20);
+		//this.updateListPokemon(0,20);
 	}
 	
 	getSubject() {
