@@ -17,6 +17,10 @@ export class PokemonPageComponent implements OnInit {
 	constructor(private route: ActivatedRoute,
 				private router: Router,
 				private dataService: DataService) { 
+	window.scroll({ 
+      top: 0, 
+      left: 0
+    });
 		
 	this.route.paramMap.subscribe(
             (params) => {
