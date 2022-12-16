@@ -1,0 +1,8 @@
+footer {
+  display: flex;
+  justify-content: center;
+  padding: auto;
+  background: #d49081;
+  color: #2e068a;
+  font-family: 'Poppins', sans-serif;
+}
