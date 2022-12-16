@@ -1,21 +1,17 @@
-<div *ngFor="let p of this.pokemons">
-	<img [src]="p.sprites.front_default"/>
-	<a [routerLink]="['/pokedex',p.id]">{{p.name}}</a>
-	<div>
-		<span *ngFor="let t of p.types"> {{ t.type.name }} </span>
-	</div>
-	<div>
-		<div *ngFor="let a of p.abilities">
+<div class="pokedex-table" *ngFor="let p of this.pokemons">
+  <div class="pokedex-row">
+    <div class="pokedex-cell">
+	    <img [src]="p.sprites.front_default" style="vertical-align:middle"/>
+	    <a [routerLink]="['/pokedex',p.id]">{{p.name}}</a>
+    </div>
+    <div class="pokedex-cell" *ngFor="let t of p.types"> {{ t.type.name }}</div>
+	  <div class="pokedex-cell" div *ngFor="let a of p.abilities">
 			<span *ngIf="!a.is_hidden">{{ a.ability.name }}</span>
-		</div>
-	</div>
-	<div>
-		<div *ngFor="let a of p.abilities">
+	  </div>
+	  <div class="pokedex-cell" *ngFor="let a of p.abilities">
 			<span *ngIf="a.is_hidden">{{ a.ability.name }}</span>
-		</div>
-	</div>
-
-
+	  </div>
+  </div>
 </div>
 <!--
 <div>

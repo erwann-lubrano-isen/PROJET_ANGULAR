@@ -1,0 +1,20 @@
+
+.pokedex-table{
+  display: table;
+  width: auto;
+ }
+
+ .pokedex-row{
+  display: table-row;
+  width: auto;
+ }
+
+ .pokedex-cell{
+  display: table-cell;
+  padding-right: 10px;
+  width: auto;
+  font-size: 12;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  text-transform: capitalize;
+
+ }

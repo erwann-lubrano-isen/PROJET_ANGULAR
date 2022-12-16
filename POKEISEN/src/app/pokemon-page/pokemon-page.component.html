@@ -1,18 +1,16 @@
-
-
 <div *ngIf="this.pokemon != null">
 	<!--name-->
 	<h3> {{this.pokemon.name}} </h3>
-	
+
 	<!--sprite-->
 	<img [src]="this.pokemon.sprites.front_default"/>
-	
+
 	<!--types-->
 	<h2>Types</h2>
 	<div>
 		<span *ngFor="let t of this.pokemon.types"> {{ t.type.name }} </span>
 	</div>
-	
+
 	<!--Abilities-->
 	<h2>Abilities</h2>
 	<ul>
@@ -20,7 +18,7 @@
 			{{ a.ability.name }} <span *ngIf="a.is_hidden">hidden ability</span>
 		</li>
 	</ul>
-	
+
 	<!--stats-->
 	<app-pokemon-stats [stats]="this.pokemon.stats"></app-pokemon-stats>
 	<!---->
