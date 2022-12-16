@@ -55,7 +55,7 @@ export class TypeComponent implements OnInit {
 		},
 		{
 			name : "ice",
-			color: "rgb(152, 216, 216))"
+			color: "rgb(152, 216, 216)"
 		},
 		{
 			name : "normal",
