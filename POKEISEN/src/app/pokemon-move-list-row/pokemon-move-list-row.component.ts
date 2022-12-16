@@ -7,7 +7,7 @@ import { MovesDataService } from '../moves-data.service';
   styleUrls: ['./pokemon-move-list-row.component.css']
 })
 export class PokemonMoveListRowComponent implements OnInit {
-	@Input() move : any;
+	@Input() move : any = null;
 	
 	sub : any;
 	
