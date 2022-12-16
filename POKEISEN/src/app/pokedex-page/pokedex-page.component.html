@@ -1,19 +1,30 @@
-<div class="pokedex-table" *ngFor="let p of this.pokemons">
-  <div class="pokedex-row">
-    <div class="pokedex-cell">
-	    <img [src]="p.sprites.front_default" style="vertical-align:middle"/>
-	    <a [routerLink]="['/pokedex',p.id]">{{p.name}}</a>
-    </div>
-    <div class="pokedex-cell" >
-		<app-type [types]="p.types"></app-type>
+<div class="pokedex-table" >
+	<div class="pokedex-row" *ngFor="let p of this.pokemons">
+	
+		<div class="pokedex-cell">
+			<img [src]="p.sprites.front_default" style="vertical-align:middle"/>
+		</div>
+		
+		<div class="pokedex-cell">
+			<a [routerLink]="['/pokedex',p.id]">{{p.name}}</a>
+		</div>
+		
+		<div class="pokedex-cell" >
+			<app-type [types]="p.types"></app-type>
+		</div>
+		
+		<div class="pokedex-cell">
+			<div *ngFor="let a of p.abilities">
+				<div *ngIf="!a.is_hidden">{{ a.ability.name }}</div>
+			</div>
+		</div>
+		
+		<div class="pokedex-cell">
+			<div *ngFor="let a of p.abilities">
+				<div *ngIf="a.is_hidden">{{ a.ability.name }}</div>
+			</div>
+		</div>
 	</div>
-	  <div class="pokedex-cell" div *ngFor="let a of p.abilities">
-			<span *ngIf="!a.is_hidden">{{ a.ability.name }}</span>
-	  </div>
-	  <div class="pokedex-cell" *ngFor="let a of p.abilities">
-			<span *ngIf="a.is_hidden">{{ a.ability.name }}</span>
-	  </div>
-  </div>
 </div>
 <!--
 <div>
