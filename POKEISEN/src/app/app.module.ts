@@ -20,6 +20,7 @@ import { TypeComponent } from './type/type.component';
 import { GenSelectorComponent } from './gen-selector/gen-selector.component';
 
 import { CategoryComponent } from './category/category.component';
+import { FormsComponent } from './forms/forms.component';
 
 
 @NgModule({
@@ -36,19 +37,24 @@ import { CategoryComponent } from './category/category.component';
     PokemonMoveListRowComponent,
     PokemonStatsComponent,
     TypeComponent,
+<<<<<<< Updated upstream
     GenSelectorComponent,
     CategoryComponent
+=======
+    CategoryComponent,
+    FormsComponent
+>>>>>>> Stashed changes
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-	ReactiveFormsModule,
+	  ReactiveFormsModule,
     HttpClientModule,
-	HttpClientModule
+	  HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {
-	
+
 }
