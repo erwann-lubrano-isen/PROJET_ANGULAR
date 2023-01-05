@@ -148,8 +148,8 @@ export class DataService {
 		
 		this.httpClient.get(url).subscribe(
 			(pokemon : any) => {
-				for(let p in this.pokemons)
-					if(this.pokemons[p].id === pokemon.id)return;
+				/*for(let p in this.pokemons)
+					if(this.pokemons[p].id === pokemon.id)return;*/
 				this.httpClient.get(url.replace(/pokemon/gi,"pokemon-species")).subscribe(
 					(species : any) => {
 						pokemon.name=species.name;
@@ -159,6 +159,11 @@ export class DataService {
 								return val.language.name = "en";
 							}
 						)[0].flavor_text;
+						this.pokemons = this.pokemons.filter(
+							(p : any) => {
+								return p.id !== pokemon.id;
+							}
+						);
 						this.pokemons.push(pokemon);
 						this.subject.next(pokemon.id);
 					}
