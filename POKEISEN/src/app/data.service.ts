@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Subject , interval, map, filter, take, range, of, from } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root' 
 })
 export class DataService {
 	httpClient : HttpClient;
