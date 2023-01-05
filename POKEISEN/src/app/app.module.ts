@@ -16,6 +16,7 @@ import { PokemonMoveListComponent } from './pokemon-move-list/pokemon-move-list.
 import { PokemonMoveListRowComponent } from './pokemon-move-list-row/pokemon-move-list-row.component';
 import { PokemonStatsComponent } from './pokemon-stats/pokemon-stats.component';
 import { TypeComponent } from './type/type.component';
+import { GenSelectorComponent } from './gen-selector/gen-selector.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { TypeComponent } from './type/type.component';
     PokemonMoveListComponent,
     PokemonMoveListRowComponent,
     PokemonStatsComponent,
-    TypeComponent
+    TypeComponent,
+    GenSelectorComponent
   ],
   imports: [
     BrowserModule,

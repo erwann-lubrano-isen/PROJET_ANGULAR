@@ -1,0 +1,6 @@
+<select [(value)]="this.value" #choice (change)="this.onChange(choice.value)">
+	<option value=0>all</option>
+	<optgroup *ngFor="let choice of this.choices">
+		<option [value]="choice.id">{{choice.name}}</option>
+	</optgroup>
+</select>

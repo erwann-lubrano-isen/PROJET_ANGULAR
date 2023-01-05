@@ -10,29 +10,28 @@ import { Subject , interval, map, filter, take, range, of, from } from 'rxjs';
 })
 export class PokedexPageComponent implements OnInit {
 	sub : any;
-	offset : number = 0;
-	limit : number = 50;
+	offsets = [
+		 0
+	];
+	limit : number = 25;
+	
+	filters = {
+		"gen" : 0
+	};
 	
 	pokemons : Array <any> = new Array <any>();
   constructor(private dataService : DataService, private route: ActivatedRoute) {
-		/*this.route.queryParamMap
-			.subscribe((params) => {
-				let parameters : any = { ...params  };
-				if(parameters.params !== undefined){
-					if(parameters.params.offset !== undefined){
-						this.offset = parseInt(parameters.params.offset);
-					}
-					if(parameters.params.limit !== undefined){
-						this.limit = parseInt(parameters.params.limit);
-					}
-				}
-				this.dataService.loadListPokemon(this.offset, this.limit);
-			}
-		);*/
 
     this.sub = this.dataService.getSubject().subscribe(
       (val) => {
-        this.pokemons = this.dataService.getPokemons();
+        this.pokemons = this.dataService.getPokemons(this.filters.gen, this.offsets[this.filters.gen]);
+		if(this.filters.gen === 0 && this.pokemons.length < this.pokemons[this.pokemons.length-1].id){
+			this.pokemons= this.pokemons.filter(
+				(p : any) => {
+					return this.pokemons.length-1 >= p.id;
+				});
+		}
+		console.log(this.pokemons);
 
       }
     );
@@ -41,16 +40,35 @@ export class PokedexPageComponent implements OnInit {
    }
 
   ngOnInit(): void {
-	  this.dataService.loadListPokemon(this.offset, this.limit);
+		this.dataService.loadListPokemon(this.offsets[this.filters.gen], this.limit,this.filters.gen);
+		this.offsets[this.filters.gen] = this.offsets[this.filters.gen] + this.limit;
   }
   
     @HostListener("window:scroll", [])
   onScroll(): void {
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-		this.offset = this.offset + this.limit;
-		this.limit = 25;
-      this.dataService.loadListPokemon(this.offset, this.limit);
+		
+      this.dataService.loadListPokemon(this.offsets[this.filters.gen], this.limit, this.filters.gen);
+	  this.offsets[this.filters.gen] = this.offsets[this.filters.gen] + this.limit;
     }
+  }
+  
+  setGen(value : number){
+	  if(typeof(value) !== typeof(this.filters.gen))return;
+	  this.filters.gen = value;
+	  while(this.offsets.length <= value)this.offsets.push(0);
+	  this.pokemons = this.pokemons.filter(
+			(pokemon : any) => {
+				console.log(this.filters.gen);
+				return (this.filters.gen == 0 || pokemon.gen == this.filters.gen);
+			}
+		);
+		
+		
+		this.offsets[this.filters.gen] = this.offsets[this.filters.gen] + this.limit;
+		this.dataService.loadListPokemon(this.offsets[this.filters.gen], this.limit, this.filters.gen);
+		//console.log(this.pokemons);
+  
   }
 
 
