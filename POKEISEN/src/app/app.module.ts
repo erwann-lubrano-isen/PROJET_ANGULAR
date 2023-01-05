@@ -37,13 +37,9 @@ import { FormsComponent } from './forms/forms.component';
     PokemonMoveListRowComponent,
     PokemonStatsComponent,
     TypeComponent,
-<<<<<<< Updated upstream
     GenSelectorComponent,
-    CategoryComponent
-=======
     CategoryComponent,
     FormsComponent
->>>>>>> Stashed changes
   ],
   imports: [
     BrowserModule,
