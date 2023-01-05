@@ -36,7 +36,7 @@ import { CategoryComponent } from './category/category.component';
     PokemonMoveListRowComponent,
     PokemonStatsComponent,
     TypeComponent,
-    GenSelectorComponent
+    GenSelectorComponent,
     CategoryComponent
   ],
   imports: [
