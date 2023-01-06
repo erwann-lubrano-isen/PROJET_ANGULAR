@@ -14,9 +14,6 @@ export class FormsComponent implements OnInit {
 
   ngOnInit(): void {
 
-
-    console.log(this.dataService.getPokemon("zygarde"));
-
   }
 
 }
