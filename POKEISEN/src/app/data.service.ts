@@ -171,9 +171,9 @@ export class DataService {
 						pokemon.gen = this.getGenIdByName(species.generation.name);
 						pokemon.text_entrie = species.flavor_text_entries.filter(
 							(val : any) => {
-								return val.language.name = "en";
+								return val.language.name == "en";
 							}
-						)[0].flavor_text;
+						).pop().flavor_text;
 						this.pokemons = this.pokemons.filter(
 							(p : any) => {
 								return p.id !== pokemon.id;

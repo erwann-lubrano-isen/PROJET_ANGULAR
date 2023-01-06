@@ -16,12 +16,16 @@
 	<h2>Abilities</h2>
 	<ul>
 		<li *ngFor="let a of this.pokemon.abilities">
-			{{ a.ability.name }} <span *ngIf="a.is_hidden">hidden ability</span>
+			{{ a.ability.name }} <span *ngIf="a.is_hidden">(hidden)</span>
 		</li>
 	</ul>
 
 	<!--stats-->
 	<app-pokemon-stats [stats]="this.pokemon.stats"></app-pokemon-stats>
+	
+	<!--description-->
+	<h2>Description</h2>
+	<div><p>{{this.pokemon.text_entrie}}</p></div>
 	<!---->
 	<app-pokemon-move-list [moves]="this.pokemon.moves"></app-pokemon-move-list>
 
