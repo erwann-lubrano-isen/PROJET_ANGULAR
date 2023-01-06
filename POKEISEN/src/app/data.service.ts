@@ -223,7 +223,7 @@ export class DataService {
 					});
 			}
 		)
-	}
+	} 
 	
 	loadPokemonsByName(name : string) {
 		let names = this.searchPokemonByName(name);
