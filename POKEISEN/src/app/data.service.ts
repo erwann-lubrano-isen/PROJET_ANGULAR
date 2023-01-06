@@ -29,17 +29,27 @@ export class DataService {
 		return this.listPokemon;
 	}
 	
-	getPokemons(gen : number=0, cnt : number=25) {
+	getPokemons(gen : number=0, cnt : number=25, name="") {
 		//console.log(this.pokemons);
+		if(name.length === 0)
+			return this.pokemons.filter(
+				(pokemon : any) => {
+					return (gen == 0 || pokemon.gen == gen);
+				}
+			).sort(
+				(a : any , b : any)  =>  {
+					return a.id - b.id;
+				}
+			).slice(0,cnt);
 		return this.pokemons.filter(
-			(pokemon : any) => {
-				return gen == 0 || pokemon.gen == gen;
-			}
-		).sort(
-			(a : any , b : any)  =>  {
-				return a.id - b.id;
-			}
-		).slice(0,cnt);
+				(pokemon : any) => {
+					return (gen == 0 || pokemon.gen == gen) && pokemon.name.startsWith(name);
+				}
+			).sort(
+				(a : any , b : any)  =>  {
+					return a.id - b.id;
+				}
+			) 
 	}
 	
 	getPokemon(name : string) : any {
@@ -59,6 +69,7 @@ export class DataService {
 	}
 	
 	updateListPokemon(offset : number, limit : number, gen : number){
+		
 		if(gen === 0){
 			let url = 'https://pokeapi.co/api/v2/pokemon?offset='+offset+"&limit="+limit;
 		
@@ -78,7 +89,6 @@ export class DataService {
 			);*/
 			this.httpClient.get(url).subscribe(
 				(pokemons : any) => {
-					console.log(pokemons);
 					this.listPokemon = pokemons.pokemon_species;
 					for(let p in this.listPokemon){
 						this.listPokemon[p].url = this.listPokemon[p].url.replace(/-species/gi,"");
@@ -152,7 +162,7 @@ export class DataService {
 			(pokemon : any) => {
 				/*for(let p in this.pokemons)
 					if(this.pokemons[p].id === pokemon.id)return;*/
-				this.httpClient.get(url.replace(/pokemon/gi,"pokemon-species")).subscribe(
+				this.httpClient.get(pokemon.species.url).subscribe(
 					(species : any) => {
 						pokemon.name=species.name;
 						pokemon.gen = this.getGenIdByName(species.generation.name);
@@ -166,6 +176,7 @@ export class DataService {
 								return p.id !== pokemon.id;
 							}
 						);
+						
 						this.pokemons.push(pokemon);
 						this.subject.next(pokemon.id);
 					}
@@ -201,7 +212,7 @@ export class DataService {
 		let url = "https://pokeapi.co/api/v2/generation";
 		this.httpClient.get(url).subscribe(
 			(genList : any) => {
-				this.genList = genList.results
+				this.genList = genList.results;
 				for(let i in this.genList){
 					this.genList[i].id = this.getGenIdByUrl(this.genList[i].url);
 				}
@@ -249,7 +260,7 @@ export class DataService {
 	searchPokemonByName(name : string) : Array<string>{
 		let names = new Array<string>;
 		for(let n of this.listNames)
-			if(n.name.toLowerCase().starts_with(name.toLowerCase()))
+			if(n.name.toLowerCase().startsWith(name.toLowerCase()))
 				names.push(n.name);
 		return names;
 	}

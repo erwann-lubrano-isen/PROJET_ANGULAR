@@ -16,7 +16,8 @@ export class PokedexPageComponent implements OnInit {
 	limit : number = 25;
 	
 	filters = {
-		"gen" : 0
+		"gen" : 0,
+		"name" : ""
 	};
 	
 	pokemons : Array <any> = new Array <any>();
@@ -24,10 +25,11 @@ export class PokedexPageComponent implements OnInit {
 
     this.sub = this.dataService.getSubject().subscribe(
       (val) => {
-        this.pokemons = this.dataService.getPokemons(this.filters.gen, this.offsets[this.filters.gen]);
+        this.pokemons = this.dataService.getPokemons(this.filters.gen, this.offsets[this.filters.gen],this.filters.name);
 		if(this.filters.gen === 0 && this.pokemons.length < this.pokemons[this.pokemons.length-1].id){
 			this.pokemons= this.pokemons.filter(
 				(p : any) => {
+					if(this.filters.name.length > 0)return p.name.toLowerCase().startsWith(this.filters.name);
 					return this.pokemons.length-1 >= p.id;
 				});
 		}
@@ -60,7 +62,7 @@ export class PokedexPageComponent implements OnInit {
 	  this.pokemons = this.pokemons.filter(
 			(pokemon : any) => {
 				console.log(this.filters.gen);
-				return (this.filters.gen == 0 || pokemon.gen == this.filters.gen);
+				return (this.filters.gen == 0 || pokemon.gen == this.filters.gen)&& pokemon.name.toLowerCase().startsWith(this.filters.name);
 			}
 		);
 		
@@ -69,6 +71,19 @@ export class PokedexPageComponent implements OnInit {
 		this.dataService.loadListPokemon(this.offsets[this.filters.gen], this.limit, this.filters.gen);
 		//console.log(this.pokemons);
   
+  }
+  
+  setNameFilter(value : string){
+	  console.log(value);
+	  if(typeof(value) !== typeof(this.filters.name))return;
+	  console.log(value);
+	  this.filters.name=value;
+	  this.dataService.loadPokemonsByName(value);
+	  this.pokemons = this.pokemons.filter(
+			(pokemon : any) => {
+				return (this.filters.gen == 0 || pokemon.gen == this.filters.gen) && pokemon.name.toLowerCase().startsWith(this.filters.name);
+			}
+		);
   }
 
 

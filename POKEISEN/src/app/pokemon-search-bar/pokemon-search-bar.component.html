@@ -1,3 +1,7 @@
-<p>pokemon-search-bar works!</p>
-
-<input class="search">
+<form (ngSubmit)="submit()" [formGroup]="searchForm">
+	<input  type="text" list="listName" (input)="change()" formControlName="searchField" />
+	<button type="submit">Cherche</button>
+	<datalist id="listName">
+		<optgroup *ngFor="let name of this.listName"><option [value]="name"></optgroup> 
+	</datalist>
+</form>
