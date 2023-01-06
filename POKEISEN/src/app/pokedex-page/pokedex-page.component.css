@@ -1,6 +1,9 @@
 
 .pokedex-table{
   display: table;
+  margin : auto;
+  width : auto;
+  min-width : 50%;
  }
 
  .pokedex-row{
