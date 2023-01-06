@@ -90,13 +90,19 @@ export class TypeComponent implements OnInit {
   constructor() {
 
   }
-
-  ngOnInit(): void {
+  
+  update(newTypes=null){
+	  if(newTypes!==null)this.types=newTypes;
+	  this.formated_types = new Array<any>();
 	  for(let t of this.types){
 		  for(let it of this.colors_type){
 			  if(it.name == t.type.name)this.formated_types.push(it);
 		  }
 	  }
+  }
+
+  ngOnInit(): void {
+	  this.update();
   }
 
 }

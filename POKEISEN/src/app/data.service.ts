@@ -168,6 +168,9 @@ export class DataService {
 						pokemon.fullname=pokemon.name;
 						pokemon.name=species.name;
 						pokemon.varieties = species.varieties;
+						for(let i in pokemon.varieties){
+							pokemon.varieties[i].pokemon.id=this.getPokemonIdByUrl(pokemon.varieties[i].pokemon.url);
+						}
 						pokemon.gen = this.getGenIdByName(species.generation.name);
 						pokemon.text_entrie = species.flavor_text_entries.filter(
 							(val : any) => {

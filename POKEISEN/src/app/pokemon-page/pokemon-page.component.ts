@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Directive, Input, ViewChild} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from '../data.service';
 import { PokemonMoveListComponent } from '../pokemon-move-list/pokemon-move-list.component';
 import { PokemonStatsComponent } from '../pokemon-stats/pokemon-stats.component';
+import { TypeComponent } from '../type/type.component';
+
 @Component({
   selector: 'app-pokemon-page',
   templateUrl: './pokemon-page.component.html',
@@ -11,6 +13,16 @@ import { PokemonStatsComponent } from '../pokemon-stats/pokemon-stats.component'
 export class PokemonPageComponent implements OnInit {
 	id : number = 0;
 	pokemon : any = null;
+	
+	statsCmp : any = null;
+    @ViewChild(PokemonStatsComponent) set apppokemonstats(s: PokemonStatsComponent) {
+		this.statsCmp = s;
+	};
+	
+	typeCmp : any = null;
+    @ViewChild(TypeComponent) set apptype(t: TypeComponent) {
+		this.typeCmp = t;
+	};
 	
 	sub : any;
 
@@ -22,24 +34,22 @@ export class PokemonPageComponent implements OnInit {
       left: 0
     });
 		
-	this.route.paramMap.subscribe(
-            (params) => {
-				this.id = parseInt(params.get('id') ?? "0");
-				
-				this.sub = this.dataService.getSubject().subscribe(
-					(val) => {
-						if(val == this.id)this.updateData();
-					}
-				);
-				
-				this.dataService.loadPokemon(this.id);
-			}
-        );
+	
 		
 	}
 
 	ngOnInit(): void {
-		
+		this.sub = this.dataService.getSubject().subscribe(
+			(val) => {
+				this.updateData();
+			}
+		);
+		this.route.paramMap.subscribe(
+            (params) => {
+				this.id = parseInt(params.get('id') ?? "0");
+				this.dataService.loadPokemon(this.id);
+			}
+        );
 	}
 	
 	ngOnDestroy(){
@@ -49,6 +59,8 @@ export class PokemonPageComponent implements OnInit {
 	updateData() : void {
 		this.pokemon = this.dataService.getPokemon(this.dataService.getPokemonNameById(this.id));
 		console.log(this.pokemon);
+		if(this.statsCmp !== null)this.statsCmp.update(this.pokemon.stats);
+		if(this.typeCmp !== null)this.typeCmp.update(this.pokemon.types);
 	}
 
 }

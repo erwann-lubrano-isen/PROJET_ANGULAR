@@ -45,7 +45,11 @@ export class PokemonStatsComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-		
+		this.update();
+	}
+	
+	update(newStats=null){
+		if(newStats!==null)this.stats=newStats;
 		this.formated_stats.hp.value = this.stats[0].base_stat;
 		this.formated_stats.att.value = this.stats[1].base_stat;
 		this.formated_stats.def.value = this.stats[2].base_stat;
