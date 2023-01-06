@@ -1,23 +1,41 @@
 .header{
   width: auto;
-  height: auto;
+  height: 150px;
   padding: 0 10%;
   font-family: 'Poppins', sans-serif;
   border-radius: 61px;
 background: #d49081;
 box-shadow:  -5px 5px 0px #c18375,
              5px -5px 0px #e79d8d;
-}
 
+}
+img{
+
+  position:absolute;
+  top: 20px;
+  left: 30px;
+}
+a{
+    color: white;
+    font-size:20px;
+    text-decoration: none;
+
+}
 ul{
-  background-color: #120C32;
+  position:absolute;
+  top: 20px;
+  right: 300px;
+  background-color: #d49081;
+  width: auto;
   display: flex;
   flex-direction: row;
   list-style-type: none;
-  padding: 16px;
-  border-radius: 32px;
-  gap: 16px;
-  box-shadow: #FF995030 0px 8px 24px;
+  padding: 30px;
+  gap: 100px;
+  border-radius: 61px;
+background: linear-gradient(225deg, #e39a8a, #bf8274);
+box-shadow:  -17px 17px 34px #b2796c,
+             17px -17px 34px #f6a796;
 }
 
 li {
@@ -35,7 +53,7 @@ li::after{
   width: 100%;
   transform: scaleX(0);
   height: 2px;
-  background-color: #FF9950;
+  background-color: white;
   transform-origin: bottom center;
   transform-origin: bottom center;
   transition: transform 0.25s ease-out;
