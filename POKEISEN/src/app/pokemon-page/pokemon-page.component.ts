@@ -32,7 +32,7 @@ export class PokemonPageComponent implements OnInit {
 					}
 				);
 				
-				this.dataService.loadListPokemon(this.id-1, 1);
+				this.dataService.loadPokemon(this.id);
 			}
         );
 		

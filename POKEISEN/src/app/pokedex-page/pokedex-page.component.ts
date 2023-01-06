@@ -29,7 +29,7 @@ export class PokedexPageComponent implements OnInit {
 		if(this.filters.gen === 0 && this.pokemons.length < this.pokemons[this.pokemons.length-1].id){
 			this.pokemons= this.pokemons.filter(
 				(p : any) => {
-					if(this.filters.name.length > 0)return p.name.toLowerCase().startsWith(this.filters.name);
+					if(this.filters.name.length > 0)return p.fullname.toLowerCase().startsWith(this.filters.name);
 					return this.pokemons.length-1 >= p.id;
 				});
 		}
@@ -62,7 +62,7 @@ export class PokedexPageComponent implements OnInit {
 	  this.pokemons = this.pokemons.filter(
 			(pokemon : any) => {
 				console.log(this.filters.gen);
-				return (this.filters.gen == 0 || pokemon.gen == this.filters.gen)&& pokemon.name.toLowerCase().startsWith(this.filters.name);
+				return (this.filters.gen == 0 || pokemon.gen == this.filters.gen)&& pokemon.fullname.toLowerCase().startsWith(this.filters.name);
 			}
 		);
 		
@@ -84,7 +84,7 @@ export class PokedexPageComponent implements OnInit {
 	  this.dataService.loadPokemonsByName(value);
 	  this.pokemons = this.pokemons.filter(
 			(pokemon : any) => {
-				return (this.filters.gen == 0 || pokemon.gen == this.filters.gen) && pokemon.name.toLowerCase().startsWith(this.filters.name);
+				return (this.filters.gen == 0 || pokemon.gen == this.filters.gen) && pokemon.fullname.toLowerCase().startsWith(this.filters.name);
 			}
 		);
   }

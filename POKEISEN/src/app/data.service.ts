@@ -43,7 +43,7 @@ export class DataService {
 			).slice(0,cnt);
 		return this.pokemons.filter(
 				(pokemon : any) => {
-					return (gen == 0 || pokemon.gen == gen) && pokemon.name.startsWith(name);
+					return (gen == 0 || pokemon.gen == gen) && pokemon.fullname.startsWith(name);
 				}
 			).sort(
 				(a : any , b : any)  =>  {
@@ -54,7 +54,7 @@ export class DataService {
 	
 	getPokemon(name : string) : any {
 		let p = this.pokemons.filter((p : any) => {
-			return (p.name ===  name);
+			return (p.fullname ===  name);
 		});
 		if(p.length == 0)return null;
 		else return p[0];
@@ -63,7 +63,7 @@ export class DataService {
 	getPokemonNameById(id : number) : string {
 		for(let p of this.pokemons){
 			if(p.id === id)
-				return p.name;
+				return p.fullname;
 		}
 		return "";
 	}
@@ -78,7 +78,7 @@ export class DataService {
 				(pokemons : any) => {
 					this.listPokemon = pokemons.results;
 					for(let p of pokemons.results)
-						this.updatePokemon(p.url, p.name);
+						this.updatePokemon(p.url);
 					//console.log(this.listPokemon);
 				}
 			)
@@ -92,7 +92,7 @@ export class DataService {
 					this.listPokemon = pokemons.pokemon_species;
 					for(let p in this.listPokemon){
 						this.listPokemon[p].url = this.listPokemon[p].url.replace(/-species/gi,"");
-						this.updatePokemon(this.listPokemon[p].url, this.listPokemon[p].url.name);
+						this.updatePokemon(this.listPokemon[p].url);
 					}
 					
 				}
@@ -150,11 +150,12 @@ export class DataService {
 		return tot;
 	}
 	
-	updatePokemon(url : string, name : string){
+	updatePokemon(url : string){
 		/*this.httpClient.get(url).pipe(map(response => response.data),filter(data => data.status === 'success')
 		);*/
+		
 		this.pokemons = this.pokemons.filter((p : any) => {
-			return !(p.name ===  name);
+			return !(p.id ===  this.getPokemonIdByUrl(url));
 		});
 		
 		
@@ -164,7 +165,9 @@ export class DataService {
 					if(this.pokemons[p].id === pokemon.id)return;*/
 				this.httpClient.get(pokemon.species.url).subscribe(
 					(species : any) => {
+						pokemon.fullname=pokemon.name;
 						pokemon.name=species.name;
+						pokemon.varieties = species.varieties;
 						pokemon.gen = this.getGenIdByName(species.generation.name);
 						pokemon.text_entrie = species.flavor_text_entries.filter(
 							(val : any) => {
@@ -184,6 +187,11 @@ export class DataService {
 				
 			}
 		)
+	}
+	
+	loadPokemon(id : number){
+		let url = "https://pokeapi.co/api/v2/pokemon/"+id;
+		this.updatePokemon(url);
 	}
 	
 	loadListPokemon(offset : number, limit : number, gen : number = 0){
@@ -254,7 +262,9 @@ export class DataService {
 			}
 		);
 		for(let p of pokeList)
-			this.updatePokemon(p.url, p.name);
+			this.updatePokemon(p.url);
+		let a = 2;
+		if(pokeList.length === 0)this.subject.next(a);
 	}
 	
 	searchPokemonByName(name : string) : Array<string>{
