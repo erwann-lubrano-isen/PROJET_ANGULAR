@@ -1,14 +1,23 @@
 .header{
   width: auto;
-  height: auto;
+  height: 150px;
   padding: 0 10%;
   font-family: 'Poppins', sans-serif;
   border-radius: 61px;
 background: #d49081;
 box-shadow:  -5px 5px 0px #c18375,
              5px -5px 0px #e79d8d;
+display: flex;
 }
+img{
+  float: left;
+}
+a{
+    color: white;
+    font-size:20px;
+    text-decoration: none;
 
+}
 ul{
   background-color: #120C32;
   display: flex;
