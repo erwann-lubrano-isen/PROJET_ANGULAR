@@ -75,7 +75,10 @@ export class PokedexPageComponent implements OnInit {
   
   setNameFilter(value : string){
 	  console.log(value);
-	  if(typeof(value) !== typeof(this.filters.name))return;
+	  if(typeof(value) !== typeof(this.filters.name)){
+		  if(value==="")this.filters.name="";
+		  return;
+	  }
 	  console.log(value);
 	  this.filters.name=value;
 	  this.dataService.loadPokemonsByName(value);
