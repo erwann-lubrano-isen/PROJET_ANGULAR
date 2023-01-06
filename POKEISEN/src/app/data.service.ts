@@ -9,6 +9,7 @@ export class DataService {
 	httpClient : HttpClient;
 	listPokemon : Array<any> = new Array<any>;
 	pokemons : Array<any> = new Array<any>;
+	listNames : Array<any> = new Array<any>;
 	
 	subject = new Subject();
 	subjectGen = new Subject();
@@ -17,6 +18,7 @@ export class DataService {
 	constructor(httpClient : HttpClient){
 		this.httpClient =httpClient;
 		this.loadGenList();
+		this.loadNames();
 	}
 	
 	getSubject() {
@@ -208,6 +210,51 @@ export class DataService {
 			
 		)
 	}
+	
+	loadNames(){
+		let url = 'https://pokeapi.co/api/v2/pokemon?limit=-1';
+		this.httpClient.get(url).subscribe(
+			(pokemons : any) => {
+				for(let p of pokemons.results)
+					this.listNames.push({
+						"name" : p.name,
+						"id" : this.getPokemonIdByUrl(p.url),
+						"url" : p.url
+					});
+			}
+		)
+	} 
+	
+	loadPokemonsByName(name : string) {
+		let names = this.searchPokemonByName(name);
+		let pokeList = new Array<any>;
+		for(let n of names){
+			const p = this.listNames.filter((val) => {return val.name===n;})[0];
+			pokeList.push({
+				"id" : p.id,
+				"url" : p.url
+			});
+		}
+		pokeList = pokeList.filter(
+			(p : any) => {
+				for(let pokemon of this.pokemons)
+					if(p.id===pokemon.id)return false;
+				return true;
+			}
+		);
+		for(let p of pokeList)
+			this.updatePokemon(p.url, p.name);
+	}
+	
+	searchPokemonByName(name : string) : Array<string>{
+		let names = new Array<string>;
+		for(let n of this.listNames)
+			if(n.name.toLowerCase().starts_with(name.toLowerCase()))
+				names.push(n.name);
+		return names;
+	}
+	
+	
 	
 	getGenList() : Array<any> {
 		return this.genList;

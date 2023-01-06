@@ -1,0 +1,30 @@
+.category{
+  /*align-content: space-between;*/
+  display: block;
+  height: 100%;
+
+}
+
+.category>img{
+  width: 35px;
+  height: 25px;
+  border-radius: 5px;
+  margin :auto;
+  vertical-align: middle;
+}
+
+.physical
+{
+  background-color: #D25640;
+}
+
+.special {
+  background-color: #5274ae;
+
+}
+
+.non-damaging
+{
+  background-color: #c3bdb1;
+
+}

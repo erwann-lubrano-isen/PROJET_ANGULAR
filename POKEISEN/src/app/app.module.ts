@@ -21,6 +21,8 @@ import { GenSelectorComponent } from './gen-selector/gen-selector.component';
 
 import { CategoryComponent } from './category/category.component';
 import { PokemonSearchBarComponent } from './pokemon-search-bar/pokemon-search-bar.component';
+import { FormsComponent } from './forms/forms.component';
+
 
 
 @NgModule({
@@ -39,18 +41,19 @@ import { PokemonSearchBarComponent } from './pokemon-search-bar/pokemon-search-b
     TypeComponent,
     GenSelectorComponent,
     CategoryComponent,
-    PokemonSearchBarComponent
+    PokemonSearchBarComponent,
+    FormsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-	ReactiveFormsModule,
+	  ReactiveFormsModule,
     HttpClientModule,
-	HttpClientModule
+	  HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {
-	
+
 }

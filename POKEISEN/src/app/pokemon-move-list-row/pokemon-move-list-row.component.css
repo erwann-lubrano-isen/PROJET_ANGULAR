@@ -10,6 +10,7 @@
 
 .table-move-cell{
   display: table-cell;
+  padding: auto;
   padding-right: 10px;
   width: auto;
   font-size: 12;
