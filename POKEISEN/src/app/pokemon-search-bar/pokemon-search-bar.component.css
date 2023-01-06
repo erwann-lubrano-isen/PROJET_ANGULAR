@@ -1,0 +1,33 @@
+.search {
+    posistion: 15px;
+    height: 15px;
+    border-radius: 50%;
+    padding: 10px;
+    transition-duration: 500ms;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    border: 1 px solid white;
+    overflow: hidden;
+    background-image: url(src/assets/search-white.svg);
+    background-repeat: no-repeat;
+    background: 22px;
+    background-position: 45% 50%;
+}
+
+.search:hover {
+    border: 1px solid #FF9950;
+}
+
+.search:focus {
+    width: 200px;
+    cursor: text;
+    padding: 40px;
+    color: white;
+    outline: none;
+    background-color: transparent;
+    border: 1px solid #FF9950;
+    background: url(src/assets/search.svg) no-repeat;
+    background-size: 22px;
+    background-position: 10px
+}

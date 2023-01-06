@@ -11,4 +11,8 @@ footer {
   font-size: 16pt;
   margin-right: 5%;
   align-items: left;
+  border-radius: 61px;
+background: #e0e0e0;
+box-shadow:  5px 5px 10px #cccccc,
+             -5px -5px 10px #f4f4f4;
   }

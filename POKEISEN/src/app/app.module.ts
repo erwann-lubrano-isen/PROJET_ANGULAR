@@ -20,6 +20,7 @@ import { TypeComponent } from './type/type.component';
 import { GenSelectorComponent } from './gen-selector/gen-selector.component';
 
 import { CategoryComponent } from './category/category.component';
+import { PokemonSearchBarComponent } from './pokemon-search-bar/pokemon-search-bar.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { CategoryComponent } from './category/category.component';
     PokemonStatsComponent,
     TypeComponent,
     GenSelectorComponent,
-    CategoryComponent
+    CategoryComponent,
+    PokemonSearchBarComponent
   ],
   imports: [
     BrowserModule,
