@@ -76,7 +76,6 @@ export class DataService {
 	}
 	
 	updateListPokemon(offset : number, limit : number, gen : number){
-		
 		if(gen === 0){
 			let url = 'https://pokeapi.co/api/v2/pokemon?offset='+offset+"&limit="+limit;
 		
@@ -102,14 +101,8 @@ export class DataService {
 					);
 					for(let p in this.listPokemon){
 						const i = parseInt(p);
-						if(i - offset < 0){
-							console.log("continue : "+ i);
-							continue;
-						}
-						if(i - offset - limit >= 0){
-							console.log("continue : " + i);
-							break;
-						}
+						if(i - offset < 0)continue;
+						if(i - offset - limit >= 0)break;
 						this.listPokemon[p].url = this.listPokemon[p].url.replace(/-species/gi,"");
 						this.updatePokemon(this.listPokemon[p].url);
 					}
@@ -218,7 +211,7 @@ export class DataService {
 	loadListPokemon(offset : number, limit : number, gen : number = 0){
 		const listP = this.pokemons.filter(
 			(pokemon) => {
-				return offset <= pokemon.id && offset + limit > pokemon.id && (gen==0 || gen === pokemon.gen);
+				return offset <= pokemon.id && offset + limit > pokemon.id && (gen===0 || gen === pokemon.gen);
 			});
 		if(listP.length >= limit){
 			for(let p of listP)this.subject.next(p.id);

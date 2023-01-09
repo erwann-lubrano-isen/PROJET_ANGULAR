@@ -99,14 +99,16 @@ export class PokedexPageComponent implements OnInit {
 		  if(value==="")this.filters.name="";
 		  return;
 	  }
-	  console.log(value);
 	  this.filters.name=value;
-	  this.dataService.loadPokemonsByName(value);
+	  
 	  this.pokemons = this.pokemons.filter(
 			(pokemon : any) => {
 				return (this.filters.gen == 0 || pokemon.gen == this.filters.gen) && pokemon.fullname.toLowerCase().startsWith(this.filters.name);
 			}
 		);
+		
+		if(value.length !== 0)this.dataService.loadPokemonsByName(value);
+		else this.dataService.loadListPokemon(0, this.limit + this.offsets[this.filters.gen], this.filters.gen);
   }
 
 
