@@ -1,8 +1,8 @@
 .search {
     posistion: 15px;
     height: 15px;
-    border-radius: 50%;
-    padding: 10px;
+    border-radius: 30px;
+    padding: 5px;
     transition-duration: 500ms;
     cursor: pointer;
     font-family: 'Inter', sans-serif;
@@ -22,7 +22,7 @@
 .search:focus {
     width: 200px;
     cursor: text;
-    padding: 40px;
+    padding: 20px;
     color: pink;
     outline: none;
     background-color: transparent;
@@ -31,3 +31,4 @@
     background-size: 22px;
     background-position: 10px
 }
+
