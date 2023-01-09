@@ -86,18 +86,30 @@ export class DataService {
 					this.listPokemon = pokemons.results;
 					for(let p of pokemons.results)
 						this.updatePokemon(p.url);
-					//console.log(this.listPokemon);
 				}
 			)
 		}else{
-			let url = 'https://pokeapi.co/api/v2/generation/'+gen+'/?offset='+offset+"&limit="+limit;
-			console.log(url);
-			/*this.httpClient.get(url).pipe(map(response => response.data),filter(data => data.status === 'success')
-			);*/
+			let url = 'https://pokeapi.co/api/v2/generation/'+gen; //il n'y a pas de pagination pour les generations
 			this.httpClient.get(url).subscribe(
 				(pokemons : any) => {
-					this.listPokemon = pokemons.pokemon_species;
+					this.listPokemon = pokemons.pokemon_species.sort(
+						(p1 : any, p2 : any) => {
+							const urlSp = "https://pokeapi.co/api/v2/pokemon-species/"
+							const p1Id = parseInt(p1.url.substring(urlSp.length, p1.url.length-1));
+							const p2Id = parseInt(p2.url.substring(urlSp.length, p2.url.length-1));
+							return p1Id - p2Id;
+						}
+					);
 					for(let p in this.listPokemon){
+						const i = parseInt(p);
+						if(i - offset < 0){
+							console.log("continue : "+ i);
+							continue;
+						}
+						if(i - offset - limit >= 0){
+							console.log("continue : " + i);
+							break;
+						}
 						this.listPokemon[p].url = this.listPokemon[p].url.replace(/-species/gi,"");
 						this.updatePokemon(this.listPokemon[p].url);
 					}
@@ -140,7 +152,6 @@ export class DataService {
 	
 	getGenIdByName(name : string) : number {
 		let rNum = name.substring("generation-".length,name.length);
-		//console.log(rNum);
 		if(rNum.length < 1)return 0;
 		else if(rNum.length === 1)return this.genNumByRChar(rNum);
 		let pre = this.genNumByRChar(rNum[0]);
@@ -158,8 +169,6 @@ export class DataService {
 	}
 	
 	updatePokemon(url : string){
-		/*this.httpClient.get(url).pipe(map(response => response.data),filter(data => data.status === 'success')
-		);*/
 		const id = this.getPokemonIdByUrl(url);
 		this.pokemons = this.pokemons.filter((p : any) => {
 			if(p.id ===  id){
@@ -172,8 +181,6 @@ export class DataService {
 		
 		this.httpClient.get(url).subscribe(
 			(pokemon : any) => {
-				/*for(let p in this.pokemons)
-					if(this.pokemons[p].id === pokemon.id)return;*/
 				this.httpClient.get(pokemon.species.url).subscribe(
 					(species : any) => {
 						pokemon.fullname=pokemon.name;
@@ -209,7 +216,6 @@ export class DataService {
 	}
 	
 	loadListPokemon(offset : number, limit : number, gen : number = 0){
-		console.log("offset : " + offset);
 		const listP = this.pokemons.filter(
 			(pokemon) => {
 				return offset <= pokemon.id && offset + limit > pokemon.id && (gen==0 || gen === pokemon.gen);
@@ -280,8 +286,6 @@ export class DataService {
 		);
 		for(let p of pokeList)
 			this.updatePokemon(p.url);
-		/*let a = 2;
-		if(pokeList.length === 0)this.subject.next(a);*/
 	}
 	
 	searchPokemonByName(name : string) : Array<string>{
