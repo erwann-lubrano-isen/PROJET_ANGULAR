@@ -1,6 +1,6 @@
 <app-gen-selector (change)="this.setGen($event)"></app-gen-selector>
 <app-pokemon-search-bar (nameFilter)="this.setNameFilter($event)"></app-pokemon-search-bar>
-<div class="pokedex-table" >
+<div class="pokedex-table" swScrollPosition='users-loading'>
 	<div class="pokedex-row" *ngFor="let p of this.pokemons">
 	
 		<div class="pokedex-cell">

@@ -29,10 +29,10 @@ export class PokemonPageComponent implements OnInit {
 	constructor(private route: ActivatedRoute,
 				private router: Router,
 				private dataService: DataService) { 
-	window.scroll({ 
+	/*window.scroll({ 
       top: 0, 
       left: 0
-    });
+    });*/
 		
 	
 		
@@ -59,8 +59,8 @@ export class PokemonPageComponent implements OnInit {
 	updateData() : void {
 		this.pokemon = this.dataService.getPokemon(this.dataService.getPokemonNameById(this.id));
 		console.log(this.pokemon);
-		if(this.statsCmp !== null)this.statsCmp.update(this.pokemon.stats);
-		if(this.typeCmp !== null)this.typeCmp.update(this.pokemon.types);
+		if(this.statsCmp !== undefined)this.statsCmp.update(this.pokemon.stats);
+		if(this.typeCmp !== undefined)this.typeCmp.update(this.pokemon.types);
 	}
 
 }

@@ -30,7 +30,6 @@ export class DataService {
 	}
 	
 	getPokemons(gen : number=0, cnt : number=25, name="") {
-		//console.log(this.pokemons);
 		if(name.length === 0)
 			return this.pokemons.filter(
 				(pokemon : any) => {
@@ -161,9 +160,13 @@ export class DataService {
 	updatePokemon(url : string){
 		/*this.httpClient.get(url).pipe(map(response => response.data),filter(data => data.status === 'success')
 		);*/
-		
+		const id = this.getPokemonIdByUrl(url);
 		this.pokemons = this.pokemons.filter((p : any) => {
-			return !(p.id ===  this.getPokemonIdByUrl(url));
+			if(p.id ===  id){
+				this.subject.next(id);
+				return false;
+			}
+			return true;
 		});
 		
 		
@@ -206,6 +209,7 @@ export class DataService {
 	}
 	
 	loadListPokemon(offset : number, limit : number, gen : number = 0){
+		console.log("offset : " + offset);
 		const listP = this.pokemons.filter(
 			(pokemon) => {
 				return offset <= pokemon.id && offset + limit > pokemon.id && (gen==0 || gen === pokemon.gen);
