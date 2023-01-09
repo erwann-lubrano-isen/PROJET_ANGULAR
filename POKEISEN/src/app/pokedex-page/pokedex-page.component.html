@@ -4,6 +4,10 @@
 	<div class="pokedex-row" *ngFor="let p of this.pokemons">
 	
 		<div class="pokedex-cell">
+			#{{p.id}}
+		</div>
+	
+		<div class="pokedex-cell">
 			<img [src]="p.sprites.front_default" style="vertical-align:middle"/>
 		</div>
 		
