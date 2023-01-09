@@ -188,19 +188,38 @@ export class DataService {
 								return val.language.name == "en";
 							}
 						).pop().flavor_text;
-						this.pokemons = this.pokemons.filter(
-							(p : any) => {
-								return p.id !== pokemon.id;
+						
+						this.httpClient.get(species.evolution_chain.url).subscribe(
+							(evolution_chain : any) => {
+								pokemon.evolution_tree = this.getEvolutionTree(evolution_chain.chain);
+								
+								this.pokemons = this.pokemons.filter(
+									(p : any) => {
+										return p.id !== pokemon.id;
+									}
+								);
+								this.pokemons.push(pokemon);
+								this.subject.next(pokemon.id);
 							}
 						);
 						
-						this.pokemons.push(pokemon);
-						this.subject.next(pokemon.id);
 					}
 				);
 				
 			}
 		)
+	}
+	
+	getEvolutionTree(evolution_chain : any) : any{
+		let tree = {
+			"name" : evolution_chain.species.name,
+			"id" : this.getPokemonIdByUrl(evolution_chain.species.url,"https://pokeapi.co/api/v2/pokemon-species/"),
+			"evolutions" : new Array<any>()
+		};
+		for(let ec of evolution_chain.evolves_to){
+			tree.evolutions.push(this.getEvolutionTree(ec));
+		}
+		return tree;
 	}
 	
 	loadPokemon(id : number){
@@ -221,8 +240,8 @@ export class DataService {
 		
 	}
 	
-	getPokemonIdByUrl(url : string) : number{
-		return parseInt(url.substring("https://pokeapi.co/api/v2/pokemon/".length,url.length-1));
+	getPokemonIdByUrl(url : string, url2 : string = "https://pokeapi.co/api/v2/pokemon/") : number{
+		return parseInt(url.substring(url2.length,url.length-1));
 	}
 	
 	getGenIdByUrl(url : string) : number{
