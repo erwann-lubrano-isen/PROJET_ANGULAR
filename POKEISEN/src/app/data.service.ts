@@ -102,14 +102,8 @@ export class DataService {
 					);
 					for(let p in this.listPokemon){
 						const i = parseInt(p);
-						if(i - offset < 0){
-							console.log("continue : "+ i);
-							continue;
-						}
-						if(i - offset - limit >= 0){
-							console.log("continue : " + i);
-							break;
-						}
+						if(i - offset < 0)continue;
+						if(i - offset - limit >= 0)break;
 						this.listPokemon[p].url = this.listPokemon[p].url.replace(/-species/gi,"");
 						this.updatePokemon(this.listPokemon[p].url);
 					}
