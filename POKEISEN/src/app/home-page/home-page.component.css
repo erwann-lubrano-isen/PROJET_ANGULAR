@@ -1,10 +1,10 @@
 
-img{
-    display: block;
-    margin: auto;
+#homepage{
+    display: flex;
+    justify-content: center;
+    margin-left: 45%;
     max-width: 100%;
     height: auto;
-    animation: tourbilol 3s cubic-bezier(.98,1.42,.21,-0.3) infinite;
   width:300px;
 }
 .body {
@@ -14,7 +14,9 @@ img{
 
 }
 
-
+#tourbilogo {
+    animation: tourbilol 3s cubic-bezier(.98,1.42,.21,-0.3) infinite;
+}
 @keyframes tourbilol {
   from {
     -ms-transform: rotate(0deg);

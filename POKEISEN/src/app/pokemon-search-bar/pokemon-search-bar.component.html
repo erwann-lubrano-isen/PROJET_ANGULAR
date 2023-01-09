@@ -1,6 +1,6 @@
 <form (ngSubmit)="submit()" [formGroup]="searchForm">
 	<input class="search"  type="text" list="listName" (input)="change()" formControlName="searchField" />
-	<button type="submit">Cherche</button>
+	<button type="submit">Search</button>
 	<datalist id="listName">
 		<optgroup *ngFor="let name of this.listName"><option [value]="name"></optgroup> 
 	</datalist>
