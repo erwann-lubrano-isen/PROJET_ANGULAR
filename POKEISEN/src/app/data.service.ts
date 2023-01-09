@@ -60,6 +60,14 @@ export class DataService {
 		else return p[0];
 	}
 	
+	getPokemonById(id : number) : any {
+		let p = this.pokemons.filter((p : any) => {
+			return (p.id ===  id);
+		});
+		if(p.length == 0)return null;
+		else return p[0];
+	}
+	
 	getPokemonNameById(id : number) : string {
 		for(let p of this.pokemons){
 			if(p.id === id)
@@ -198,13 +206,12 @@ export class DataService {
 	}
 	
 	loadListPokemon(offset : number, limit : number, gen : number = 0){
-		
-		if(this.pokemons.filter(
+		const listP = this.pokemons.filter(
 			(pokemon) => {
 				return offset <= pokemon.id && offset + limit > pokemon.id && (gen==0 || gen === pokemon.gen);
-			}
-		).length >= limit){
-			this.subject.next(offset+1);
+			});
+		if(listP.length >= limit){
+			for(let p of listP)this.subject.next(p.id);
 		}else{
 			this.updateListPokemon(offset, limit, gen);
 		}
@@ -260,14 +267,17 @@ export class DataService {
 		pokeList = pokeList.filter(
 			(p : any) => {
 				for(let pokemon of this.pokemons)
-					if(p.id===pokemon.id)return false;
+					if(p.id===pokemon.id){
+						this.subject.next(p.id);
+						return false;
+					}
 				return true;
 			}
 		);
 		for(let p of pokeList)
 			this.updatePokemon(p.url);
-		let a = 2;
-		if(pokeList.length === 0)this.subject.next(a);
+		/*let a = 2;
+		if(pokeList.length === 0)this.subject.next(a);*/
 	}
 	
 	searchPokemonByName(name : string) : Array<string>{

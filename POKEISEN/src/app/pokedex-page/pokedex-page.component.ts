@@ -24,18 +24,27 @@ export class PokedexPageComponent implements OnInit {
   constructor(private dataService : DataService, private route: ActivatedRoute) {
 
     this.sub = this.dataService.getSubject().subscribe(
-      (val) => {
-        this.pokemons = this.dataService.getPokemons(this.filters.gen, this.offsets[this.filters.gen],this.filters.name);
-		if(this.filters.gen === 0 && this.pokemons.length < this.pokemons[this.pokemons.length-1].id){
-			this.pokemons= this.pokemons.filter(
-				(p : any) => {
-					if(this.filters.name.length > 0)return p.fullname.toLowerCase().startsWith(this.filters.name);
-					return this.pokemons.length-1 >= p.id;
+		(id : any) => {
+			for(let p of this.pokemons)
+				if(p.id === id)return;
+			let pokemon = this.dataService.getPokemonById(id);
+			this.pokemons = this.dataService.getPokemons(this.filters.gen, this.offsets[this.filters.gen],this.filters.name);
+			if((this.filters.gen === 0 || pokemon.gen === this.filters.gen) && (pokemon.id <= this.offsets[this.filters.gen] || this.filters.name.length > 0 && pokemon.fullname.toLowerCase().startsWith(this.filters.name))){
+				this.pokemons.push(pokemon);
+				this.pokemons = this.pokemons.sort((p1 : any, p2 : any) => {
+					return p1.id - p2.id;
 				});
-		}
-		console.log(this.pokemons);
+			}
+			/*if(this.filters.gen === 0 && this.pokemons.length < this.pokemons[this.pokemons.length-1].id){
+				this.pokemons= this.pokemons.filter(
+					(p : any) => {
+						if(this.filters.name.length > 0)return p.fullname.toLowerCase().startsWith(this.filters.name);
+						return this.pokemons.length-1 >= p.id;
+					});
+			}
+			console.log(this.pokemons);*/
 
-      }
+		}
     );
 	
 
