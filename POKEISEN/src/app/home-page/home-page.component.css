@@ -1,3 +1,12 @@
+
+img{
+    display: block;
+    margin: auto;
+    max-width: 100%;
+    height: auto;
+    animation: tourbilol 3s cubic-bezier(.98,1.42,.21,-0.3) infinite;
+  width:300px;
+}
 .body {
   background-repeat: no-repeat;
   background-position: center;
@@ -24,8 +33,4 @@
   }
 }
 
-img{
-	animation: tourbilol 3s cubic-bezier(.98,1.42,.21,-0.3) infinite;
-  height: 300px;
-  width:300px;
-}
+
