@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./home-page.component.css']
 })
 export class HomePageComponent implements OnInit {
-
+  url = "url('assets/logo.svg')";
   constructor() { }
 
   ngOnInit(): void {

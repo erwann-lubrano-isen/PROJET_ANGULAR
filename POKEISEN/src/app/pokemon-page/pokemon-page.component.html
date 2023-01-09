@@ -1,6 +1,19 @@
 <div *ngIf="this.pokemon != null">
+
+
+	<div *ngIf="this.pokemon.varieties.length>1">
+		<h3>Forms</h3>
+		<ul>
+			<li *ngFor="let f of this.pokemon.varieties">
+				<a *ngIf="this.pokemon.id===f.pokemon.id" [routerLink]="['/pokedex',f.pokemon.id]" class="activeForm">{{f.pokemon.name}}</a>
+				<a *ngIf="this.pokemon.id!==f.pokemon.id" [routerLink]="['/pokedex',f.pokemon.id]" class="unActiveForm">{{f.pokemon.name}}</a>
+			</li>
+		</ul>
+	</div>
 	<!--name-->
 	<h3> {{this.pokemon.name}} </h3>
+	
+	
 
 	<!--sprite-->
 	<img [src]="this.pokemon.sprites.front_default"/>
@@ -16,12 +29,16 @@
 	<h2>Abilities</h2>
 	<ul>
 		<li *ngFor="let a of this.pokemon.abilities">
-			{{ a.ability.name }} <span *ngIf="a.is_hidden">hidden ability</span>
+			{{ a.ability.name }} <span *ngIf="a.is_hidden">(hidden)</span>
 		</li>
 	</ul>
 
 	<!--stats-->
-	<app-pokemon-stats [stats]="this.pokemon.stats"></app-pokemon-stats>
+	<app-pokemon-stats [stats]="this.pokemon.stats" #statsComp></app-pokemon-stats>
+	
+	<!--description-->
+	<h2>Description</h2>
+	<div><p>{{this.pokemon.text_entrie}}</p></div>
 	<!---->
 	<app-pokemon-move-list [moves]="this.pokemon.moves"></app-pokemon-move-list>
 

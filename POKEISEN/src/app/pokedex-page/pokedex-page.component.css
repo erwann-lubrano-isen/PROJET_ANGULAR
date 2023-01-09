@@ -1,6 +1,9 @@
 
 .pokedex-table{
   display: table;
+  margin : auto;
+  width : auto;
+  min-width : 50%;
  }
 
  .pokedex-row{
@@ -20,3 +23,4 @@
 .pokedex-row:nth-child(odd){
   background-color : #f2f2f2;
 }
+
