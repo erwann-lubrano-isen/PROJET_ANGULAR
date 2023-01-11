@@ -1,18 +1,20 @@
 .search {
-    posistion: 15px;
+    position: 15px;
     height: 15px;
     border-radius: 30px;
     padding: 5px;
     transition-duration: 500ms;
     cursor: pointer;
-    font-family: 'Inter', sans-serif;
+    font-family: Arial, sans-serif;
     font-size: 15px;
     border: 1 px solid white;
     overflow: hidden;
-    background-image: url(src/assets/search-white.svg);
     background-repeat: no-repeat;
     background: 22px;
     background-position: 45% 50%;
+    display: inline-block;
+    margin: auto; 
+    margin-right: 10px;
 }
 
 .search:hover {
@@ -23,12 +25,84 @@
     width: 200px;
     cursor: text;
     padding: 20px;
-    color: pink;
+    color: black;
     outline: none;
     background-color: transparent;
     border: 1px solid #FF9950;
-    background: url(src/assets/search.svg) no-repeat;
     background-size: 22px;
     background-position: 10px
 }
 
+
+.button {
+    --color: #FF9950;
+    font-family: 'Inter', sans-serif;
+    padding: 0.8em 1.7em;
+    background-color: transparent;
+    border-radius: .3em;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: .2s;
+    font-weight: 400;
+    font-size: 17px;
+    border: 1px solid;
+    font-family: inherit;
+    text-transform: uppercase;
+    color: black;
+    z-index: 1;
+   }
+   
+   .button::before, .button::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 50px;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    border-radius: 50%;
+    z-index: -1;
+    background-color: var(--color);
+    transition: 1s ease;
+   }
+   
+   .button::before {
+    top: -1em;
+    left: -1em;
+   }
+   
+   .button::after {
+    left: calc(100% + 1em);
+    top: calc(100% + 1em);
+   }
+   
+   .button:hover::before, .button:hover::after {
+    height: 410px;
+    width: 410px;
+   }
+   
+   .button:hover {
+    color: rgb(10, 25, 30);
+   }
+   
+   .button:active {
+    filter: brightness(.8);
+   }
+
+   #button{
+    font-family: 'Inter', sans-serif;
+    display: inline-block;
+    margin: auto;
+   }
+
+   #searchbar {
+    display: inline-block; /* make the searchbar an inline-block element */
+    text-align: left; /* align the elements within the searchbar to the left */
+    margin-bottom: 40px;
+  }
+   
+  #parent{
+    width: 100%;
+  display: block;
+  text-align: center; 
+  }

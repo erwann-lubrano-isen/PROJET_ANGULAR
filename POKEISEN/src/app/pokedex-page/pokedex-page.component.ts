@@ -111,6 +111,11 @@ export class PokedexPageComponent implements OnInit {
 		else this.dataService.loadListPokemon(0, this.limit + this.offsets[this.filters.gen], this.filters.gen);
   }
 
-
+  scroolToTop(){
+	window.scroll({ 
+      top: 0, 
+      left: 0
+    });
+  }
 
 }

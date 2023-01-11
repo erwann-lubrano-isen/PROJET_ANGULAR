@@ -1,6 +1,12 @@
-<select [(value)]="this.value" #choice (change)="this.onChange(choice.value)">
-	<optgroup><option value=0>all</option></optgroup>
-	<optgroup *ngFor="let choice of this.choices">
-		<option [value]="choice.id">{{choice.name}}</option>
+<select class="generation" [(value)]="this.value" #choice (change)="this.onChange(choice.value)">
+	<optgroup class="generation">
+		<option class="generation" class="titre" value=0>
+			All
+		</option>
+	</optgroup>
+	<optgroup class="generation" *ngFor="let choice of this.choices">
+		<option class="generation" [value]="choice.id">
+			{{choice.name}}
+		</option>
 	</optgroup>
 </select>

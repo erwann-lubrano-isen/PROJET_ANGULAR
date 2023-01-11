@@ -5,3 +5,29 @@
 .unActiveForm{
 	
 }
+
+img{
+	margin: auto;
+}
+
+div{
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+h3{
+	margin: auto;
+	text-transform: capitalize;
+}
+
+.card{
+	text-align: center;
+	width: 200px;
+	margin: auto;
+	margin-top: 10%;
+	border-radius: 23px;
+background: #e8c45d;
+box-shadow: inset 5px 5px 10px #c5a74f,
+            inset -5px -5px 10px #ffe16b;
+	padding-top: 30px;
+	
+}

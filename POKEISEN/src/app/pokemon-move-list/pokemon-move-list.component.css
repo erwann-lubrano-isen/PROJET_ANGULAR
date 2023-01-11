@@ -1,6 +1,7 @@
 .table-moves{
   display: table;
   width: auto;
+  margin: auto;
 }
 
 .table-move-row{
@@ -32,6 +33,11 @@
 
 .table-move-row:nth-child(odd){
   background-color : #f2f2f2;
+  display: table-row;
+  width: auto;
+}
+.table-move-row:nth-child(even){
+  background-color : lightgray;
   display: table-row;
   width: auto;
 }

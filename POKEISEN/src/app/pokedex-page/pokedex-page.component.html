@@ -1,3 +1,4 @@
+<button (click)="this.scroolToTop()" class="myBtn" title="Go to top">Top</button>
 <app-gen-selector (change)="this.setGen($event)"></app-gen-selector>
 <app-pokemon-search-bar (nameFilter)="this.setNameFilter($event)"></app-pokemon-search-bar>
 <div class="pokedex-table" swScrollPosition='users-loading'>
@@ -8,11 +9,16 @@
 		</div>
 	
 		<div class="pokedex-cell">
-			<img [src]="p.sprites.front_default" style="vertical-align:middle"/>
+			<img [src]="p.sprites.front_default" style="vertical-align:middle" />
 		</div>
 		
 		<div class="pokedex-cell">
-			<a [routerLink]="['/pokedex',p.id]">{{p.name}}</a>
+			<div class="uiverse">
+				<span class="tooltip">info</span>
+				<span [routerLink]="['/pokedex',p.id]">{{p.name}}
+						
+				</span>
+				</div>
 		</div>
 		
 		<div class="pokedex-cell" >
@@ -32,6 +38,8 @@
 		</div>
 	</div>
 </div>
+
+
 <!--
 <div>
 	<a routerLink="/pokedex" [queryParams]="{limit:50, offset:0}">prec</a>
