@@ -1,17 +1,19 @@
+
 <button (click)="this.scroolToTop()" class="myBtn" title="Go to top">Top</button>
+
 <app-gen-selector (change)="this.setGen($event)"></app-gen-selector>
 <app-pokemon-search-bar (nameFilter)="this.setNameFilter($event)"></app-pokemon-search-bar>
 <div class="pokedex-table" swScrollPosition='users-loading'>
 	<div class="pokedex-row" *ngFor="let p of this.pokemons">
-	
+
 		<div class="pokedex-cell">
 			#{{p.id}}
 		</div>
-	
+
 		<div class="pokedex-cell">
 			<img [src]="p.sprites.front_default" style="vertical-align:middle" />
 		</div>
-		
+
 		<div class="pokedex-cell">
 			<div class="uiverse">
 				<span class="tooltip">info</span>
@@ -20,24 +22,29 @@
 				</span>
 				</div>
 		</div>
-		
+
 		<div class="pokedex-cell" >
 			<app-type [types]="p.types"></app-type>
 		</div>
-		
+
 		<div class="pokedex-cell">
 			<div *ngFor="let a of p.abilities">
 				<div *ngIf="!a.is_hidden">{{ a.ability.name }}</div>
 			</div>
 		</div>
-		
+
 		<div class="pokedex-cell">
 			<div *ngFor="let a of p.abilities">
 				<div *ngIf="a.is_hidden">{{ a.ability.name }}</div>
 			</div>
 		</div>
+		<!--<div class="pokedex-cell"><p>{{p.text_entrie}}</p></div>-->
 	</div>
 </div>
+
+
+<button  class = "topbutton">
+
 
 
 <!--

@@ -33,7 +33,7 @@ img{
 
 img:hover{
 	animation: tourbilol 3s cubic-bezier(.98,1.42,.21,-0.3) infinite;
-	
+
 }
 
 a{
@@ -55,12 +55,12 @@ header a {
   font-size: 20px;
   font-weight: bold;
   transition: color 0.2s;
-  
+
 }
 
 header a:hover {
   color: #FF715B;
-  
+
 }
 
 header ul {

@@ -41,6 +41,22 @@
 	<!--description-->
 	<h2>Description</h2>
 	<div><p>{{this.pokemon.text_entrie}}</p></div>
+	
+	<!--evolutions-->
+	<div *ngIf="this.pokemon.evolution_tree">
+	<h2>Evolutions</h2>
+	<ul>
+		<li><a [routerLink]="['/pokedex',this.pokemon.evolution_tree.id]">{{this.pokemon.evolution_tree.name}}</a>
+			<ul *ngFor="let e of this.pokemon.evolution_tree.evolutions">
+				<li><a [routerLink]="['/pokedex',e.id]">{{e.name}}</a>
+					<ul *ngFor="let f of e.evolutions">
+						<li><a [routerLink]="['/pokedex',f.id]">{{f.name}}</a></li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+	</ul>
+	</div>
 	<!---->
 	<app-pokemon-move-list [moves]="this.pokemon.moves"></app-pokemon-move-list>
 
