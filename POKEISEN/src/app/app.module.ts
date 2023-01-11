@@ -11,7 +11,6 @@ import { FooterComponent } from './footer/footer.component';
 import { PokedexPageComponent } from './pokedex-page/pokedex-page.component';
 import { PokemonPageComponent } from './pokemon-page/pokemon-page.component';
 import { AboutPageComponent } from './about-page/about-page.component';
-import { TestPageComponent } from './test-page/test-page.component';
 import { PokemonMoveListComponent } from './pokemon-move-list/pokemon-move-list.component';
 import { PokemonMoveListRowComponent } from './pokemon-move-list-row/pokemon-move-list-row.component';
 import { PokemonStatsComponent } from './pokemon-stats/pokemon-stats.component';
@@ -21,7 +20,6 @@ import { GenSelectorComponent } from './gen-selector/gen-selector.component';
 
 import { CategoryComponent } from './category/category.component';
 import { PokemonSearchBarComponent } from './pokemon-search-bar/pokemon-search-bar.component';
-import { FormsComponent } from './forms/forms.component';
 
 
 
@@ -34,15 +32,13 @@ import { FormsComponent } from './forms/forms.component';
     PokedexPageComponent,
     PokemonPageComponent,
     AboutPageComponent,
-    TestPageComponent,
     PokemonMoveListComponent,
     PokemonMoveListRowComponent,
     PokemonStatsComponent,
     TypeComponent,
     GenSelectorComponent,
     CategoryComponent,
-    PokemonSearchBarComponent,
-    FormsComponent
+    PokemonSearchBarComponent
   ],
   imports: [
     BrowserModule,
