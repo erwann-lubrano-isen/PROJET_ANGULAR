@@ -15,10 +15,17 @@ export class MovesDataService {
 		
 	}
 	
+	/**
+	*	@brief recupere l'observable
+	*/
 	getSubject() {
 		return this.subject;
 	}
 	
+	/**
+	*	@brief charge une capacité
+	*	@param url : url de la capacité
+	*/
 	loadMove(url : string) {
 		let id = this.getMoveIdByUrl(url);
 		if(this.listMove.filter(
@@ -37,6 +44,10 @@ export class MovesDataService {
 		}
 	}
 	
+	/**
+	*	@brief recupère une capacité
+	*	@param id : id de la capacité
+	*/
 	getMove(id : number){
 		let mvs = this.listMove.filter(
 			(move : any) => {
@@ -46,6 +57,10 @@ export class MovesDataService {
 		return mvs.length > 0 ? mvs[0] : null;
 	}
 	
+	/**
+	*	@brief recupère l'id d'une capacité grace à son url
+	*	@param url : url de la capacité
+	*/
 	getMoveIdByUrl(url : string) : number{
 		return parseInt(url.substring("https://pokeapi.co/api/v2/move/".length,url.length-1));
 	}
