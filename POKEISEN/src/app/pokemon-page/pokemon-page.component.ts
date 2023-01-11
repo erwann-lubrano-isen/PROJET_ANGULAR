@@ -58,9 +58,8 @@ export class PokemonPageComponent implements OnInit {
 	
 	updateData() : void {
 		this.pokemon = this.dataService.getPokemon(this.dataService.getPokemonNameById(this.id));
-		console.log(this.pokemon);
-		if(this.statsCmp !== undefined)this.statsCmp.update(this.pokemon.stats);
-		if(this.typeCmp !== undefined)this.typeCmp.update(this.pokemon.types);
+		if(this.statsCmp !== undefined && this.statsCmp !== null)this.statsCmp.update(this.pokemon.stats);
+		if(this.typeCmp !== undefined && this.typeCmp !== null)this.typeCmp.update(this.pokemon.types);
 	}
 
 }
