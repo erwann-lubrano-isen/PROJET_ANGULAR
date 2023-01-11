@@ -19,7 +19,6 @@ export class GenSelectorComponent implements OnInit {
 		this.sub = this.dataService.getGenSubject().subscribe(
 		  (val : number) => {
 			this.choices = this.dataService.getGenList();
-			console.log(this.choices);
 			this.sub.unsubscribe();
 		  }
 		);
@@ -29,7 +28,6 @@ export class GenSelectorComponent implements OnInit {
 	}
 	
 	onChange(num : string) {
-		console.log(num);
 		this.change.emit(parseInt(num));
 	}
 }

@@ -34,7 +34,7 @@ export class PokedexPageComponent implements OnInit {
 			if((this.filters.name.length === 0 || pokemon.fullname.toLowerCase().startsWith(this.filters.name)) 
 				&& (this.filters.gen === 0 && (pokemon.id <= this.offsets[this.filters.gen] || this.filters.name.length !== 0) || pokemon.gen === this.filters.gen) 
 				){
-					console.log(pokemon);
+
 				this.pokemons.push(pokemon);
 				this.pokemons = this.pokemons.sort((p1 : any, p2 : any) => {
 					return p1.id - p2.id;
@@ -63,7 +63,6 @@ export class PokedexPageComponent implements OnInit {
 		const offset = this.offsets[gen];
 		this.offsets[gen] += this.limit;
 		this.dataService.loadListPokemon(offset, this.limit, gen);
-		console.count("chargement");
 		
     }
   }
@@ -79,10 +78,8 @@ export class PokedexPageComponent implements OnInit {
 		);
 		
 		
-		//this.offsets[this.filters.gen] = this.offsets[this.filters.gen] + this.limit;
 		if(this.filters.name.length === 0)this.dataService.loadListPokemon(0, this.limit + this.offsets[this.filters.gen], this.filters.gen);
 		else this.dataService.loadPokemonsByName(this.filters.name);
-		//console.log(this.pokemons);
   
   }
   
