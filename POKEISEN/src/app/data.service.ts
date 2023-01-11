@@ -21,14 +21,26 @@ export class DataService {
 		this.loadNames();
 	}
 	
+	/**
+	*	@brief recupere l'observable lié à l'actualisation de la liste pokemons
+	*/
 	getSubject() {
 		return this.subject;
 	}
 	
+	/**
+	*	@brief getter pour listPokemon
+	*/
 	getListPokemon() {
 		return this.listPokemon;
 	}
 	
+	/**
+	*	@brief renvoie la liste des pokemons chargés
+	*	@param gen : filtre par generation, 0 si getComputedStyle
+	*	@param cnt : nombre de pokemon renvoyés
+	*	@param name : filtre par le debut du nom
+	*/
 	getPokemons(gen : number=0, cnt : number=25, name="") {
 		if(name.length === 0)
 			return this.pokemons.filter(
@@ -51,6 +63,10 @@ export class DataService {
 			) 
 	}
 	
+	/**
+	*	@brief renvoie un pokemon
+	*	@param name : nom du pokemon
+	*/
 	getPokemon(name : string) : any {
 		let p = this.pokemons.filter((p : any) => {
 			return (p.fullname ===  name);
@@ -59,6 +75,10 @@ export class DataService {
 		else return p[0];
 	}
 	
+	/**
+	*	@brief renvoie un pokemon
+	*	@param id : id du pokemon
+	*/
 	getPokemonById(id : number) : any {
 		let p = this.pokemons.filter((p : any) => {
 			return (p.id ===  id);
@@ -67,6 +87,10 @@ export class DataService {
 		else return p[0];
 	}
 	
+	/**
+	*	@brief renvoie le nom d'un pokemon grace a son id
+	*	@param id : id du pokemon
+	*/
 	getPokemonNameById(id : number) : string {
 		for(let p of this.pokemons){
 			if(p.id === id)
@@ -75,6 +99,12 @@ export class DataService {
 		return "";
 	}
 	
+	/**
+	*	@brief charge la liste des pokemons
+	*	@param offset : decalage du premier pokemon à charger
+	*	@param limit : nombre maximal de pokemon à charger
+	*	@param gen : recherche par generation si different de 0
+	*/
 	updateListPokemon(offset : number, limit : number, gen : number){
 		if(gen === 0){
 			let url = 'https://pokeapi.co/api/v2/pokemon?offset='+offset+"&limit="+limit;
@@ -84,7 +114,7 @@ export class DataService {
 				(pokemons : any) => {
 					this.listPokemon = pokemons.results;
 					for(let p of pokemons.results)
-						this.updatePokemon(p.url);
+						this.updatePokemon(this.getPokemonIdByUrl(p.url));
 				}
 			)
 		}else{
@@ -104,7 +134,7 @@ export class DataService {
 						if(i - offset < 0)continue;
 						if(i - offset - limit >= 0)break;
 						this.listPokemon[p].url = this.listPokemon[p].url.replace(/-species/gi,"");
-						this.updatePokemon(this.listPokemon[p].url);
+						this.updatePokemon(this.getPokemonIdByUrl(this.listPokemon[p].url));
 					}
 					
 				}
@@ -112,6 +142,10 @@ export class DataService {
 		}
 	}
 	
+	/**
+	*	@brief converti un chiffre romain en chiffre pas romain
+	*	@param c : caractere romain
+	*/
 	genNumByRChar(c : string) : number{
 		if(c.length < 1)return 0;
 		let equNum = [
@@ -143,6 +177,10 @@ export class DataService {
 		return 0;
 	}
 	
+	/**
+	*	@brief recupere le numero d'une generation a partir de son nom
+	*	@param name : nom de la generation
+	*/
 	getGenIdByName(name : string) : number {
 		let rNum = name.substring("generation-".length,name.length);
 		if(rNum.length < 1)return 0;
@@ -161,8 +199,12 @@ export class DataService {
 		return tot;
 	}
 	
-	updatePokemon(url : string){
-		const id = this.getPokemonIdByUrl(url);
+	/**
+	*	@brief charge un pokemon et le stocke dans pokemons
+	*	@param id : id du pokemon  
+	*/
+	updatePokemon(id : number){
+		
 		this.pokemons = this.pokemons.filter((p : any) => {
 			if(p.id ===  id){
 				this.subject.next(id);
@@ -171,6 +213,7 @@ export class DataService {
 			return true;
 		});
 		
+		const url = "https://pokeapi.co/api/v2/pokemon/"+id;
 		
 		this.httpClient.get(url).subscribe(
 			(pokemon : any) => {
@@ -210,6 +253,10 @@ export class DataService {
 		)
 	}
 	
+	/**
+	*	@brief genere un arbre d'evolution tout beau tout propre à partir de la chaine d'évolution
+	*	@param evolution_chain : chaine evolutive a transformer
+	*/
 	getEvolutionTree(evolution_chain : any) : any{
 		let tree = {
 			"name" : evolution_chain.species.name,
@@ -222,11 +269,20 @@ export class DataService {
 		return tree;
 	}
 	
-	loadPokemon(id : number){
-		let url = "https://pokeapi.co/api/v2/pokemon/"+id;
-		this.updatePokemon(url);
+	/**
+	*	@brief charge un pokemon
+	*	@param id: id du pokemon
+	*/
+	loadPokemon(id : number){;
+		this.updatePokemon(id);
 	}
 	
+	/**
+	*	@brief cree la liste des pokemons a charger
+	*	@param offset : decalage du premier pokemon à charger
+	*	@param limit : nombre maximal de pokemon à charger
+	*	@param gen : recherche par generation si different de 0
+	*/
 	loadListPokemon(offset : number, limit : number, gen : number = 0){
 		const listP = this.pokemons.filter(
 			(pokemon) => {
@@ -240,14 +296,26 @@ export class DataService {
 		
 	}
 	
+	/**
+	*	@brief parse l'id d'un pokemon à partir de son URL
+	*	@param url : url du pokemon
+	*	@param url2 : base de l'url
+	*/
 	getPokemonIdByUrl(url : string, url2 : string = "https://pokeapi.co/api/v2/pokemon/") : number{
 		return parseInt(url.substring(url2.length,url.length-1));
 	}
 	
+	/**
+	*	@brief parse l'id d'une generation à partir de son URL
+	*	@param url : url de la generation
+	*/
 	getGenIdByUrl(url : string) : number{
 		return parseInt(url.substring("https://pokeapi.co/api/v2/generation/".length,url.length-1));
 	}
 	
+	/**
+	*	@brief charge la liste des générations
+	*/
 	loadGenList() : void {
 		let url = "https://pokeapi.co/api/v2/generation";
 		this.httpClient.get(url).subscribe(
@@ -262,6 +330,9 @@ export class DataService {
 		)
 	}
 	
+	/**
+	*	@brief charge la liste des noms des pokemons
+	*/
 	loadNames(){
 		let url = 'https://pokeapi.co/api/v2/pokemon?limit=-1';
 		this.httpClient.get(url).subscribe(
@@ -276,6 +347,10 @@ export class DataService {
 		)
 	} 
 	
+	/**
+	*	@brief charge les pokemons par nom
+	*	@param name : début du nom des pokemons
+	*/
 	loadPokemonsByName(name : string) {
 		let names = this.searchPokemonByName(name);
 		let pokeList = new Array<any>;
@@ -297,9 +372,13 @@ export class DataService {
 			}
 		);
 		for(let p of pokeList)
-			this.updatePokemon(p.url);
+			this.updatePokemon(this.getPokemonIdByUrl(p.url));
 	}
 	
+	/**
+	*	@brief liste le nom des pokemons par nom
+	*	@param name : début du nom des pokemons
+	*/
 	searchPokemonByName(name : string) : Array<string>{
 		let names = new Array<string>;
 		for(let n of this.listNames)
@@ -309,11 +388,16 @@ export class DataService {
 	}
 	
 	
-	
+	/**
+	*	@brief recupère la liste des generations
+	*/
 	getGenList() : Array<any> {
 		return this.genList;
 	}
 	
+	/**
+	*	@brief recupère l'observable sur la liste des generations
+	*/
 	getGenSubject() : any {
 		return this.subjectGen;
 	}

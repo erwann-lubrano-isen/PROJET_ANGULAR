@@ -15,9 +15,9 @@
 		</div>
 
 		<div class="pokedex-cell">
-			<div class="uiverse">
+			<div class="uiverse" [routerLink]="['/pokedex',p.id]">
 				<span class="tooltip">info</span>
-				<span [routerLink]="['/pokedex',p.id]">{{p.name}}
+				<span >{{p.name}}
 						
 				</span>
 				</div>

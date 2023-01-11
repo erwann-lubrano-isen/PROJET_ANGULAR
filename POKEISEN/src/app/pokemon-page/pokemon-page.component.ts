@@ -29,10 +29,10 @@ export class PokemonPageComponent implements OnInit {
 	constructor(private route: ActivatedRoute,
 				private router: Router,
 				private dataService: DataService) { 
-	/*window.scroll({ 
+	window.scroll({ 
       top: 0, 
       left: 0
-    });*/
+    });
 		
 	
 		
